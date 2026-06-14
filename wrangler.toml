@@ -1,0 +1,7 @@
+# Cloudflare Pages — GeetAI Studio static site
+# Deploy: npx wrangler pages deploy . --project-name=geetai-studio
+# Or connect this repo in Cloudflare Dashboard → Workers & Pages → Create → Connect Git
+
+name = "geetai-studio"
+compatibility_date = "2024-06-01"
+pages_build_output_dir = "."

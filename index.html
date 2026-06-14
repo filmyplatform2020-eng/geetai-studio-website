@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeetAI — Your AI Operating System For Business Growth</title>
+<meta name="description" content="GeetAI Studio gives you 30 AI-powered business tools in one platform. Generate leads, write proposals, automate workflows, create content and grow revenue — faster than ever.">
+<!-- Favicon set (add files to root — see ASSETS_NEEDED.md) -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<!-- Open Graph / Social sharing (og-image.png needed — see ASSETS_NEEDED.md) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geetaistudio.com/">
+<meta property="og:title" content="GeetAI Studio — 30 AI-Powered Tools for Business Growth">
+<meta property="og:description" content="AI-powered tools for freelancers, agencies and modern business. Generate leads, write proposals, automate workflows and grow revenue faster.">
+<meta property="og:image" content="https://geetaistudio.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@geetaistudio">
+<meta name="twitter:title" content="GeetAI Studio — 30 AI-Powered Tools">
+<meta name="twitter:description" content="AI tools for freelancers, agencies and modern business. Try GeetAI Studio.">
+<meta name="twitter:image" content="https://geetaistudio.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+:root {
+  --bg:        #03030a;
+  --bg2:       #07071a;
+  --bg3:       #0d0d26;
+  --surface:   rgba(255,255,255,0.04);
+  --surface2:  rgba(255,255,255,0.07);
+  --border:    rgba(255,255,255,0.08);
+  --border2:   rgba(99,102,241,0.3);
+  --blue:      #3b82f6;
+  --blue2:     #60a5fa;
+  --indigo:    #6366f1;
+  --purple:    #8b5cf6;
+  --cyan:      #06b6d4;
+  --cyan2:     #22d3ee;
+  --white:     #f8fafc;
+  --muted:     #94a3b8;
+  --muted2:    #64748b;
+  --accent:    #a78bfa;
+  --glow-blue: rgba(59,130,246,0.15);
+  --glow-purple: rgba(139,92,246,0.15);
+  --glow-cyan: rgba(6,182,212,0.12);
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-2xl: 32px;
+
+  --ease: cubic-bezier(0.16,1,0.3,1);
+  --ease-out: cubic-bezier(0,0,0.2,1);
+}
+
+/* ─── RESET ─────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; }
+button { cursor:pointer; font-family:inherit; }
+ul { list-style:none; }
+
+/* ─── CANVAS BACKGROUND ─────────────────────────────────────── */
+#canvas-bg {
+  position:fixed; inset:0; z-index:0;
+  pointer-events:none;
+}
+
+/* ─── UTILITY ───────────────────────────────────────────────── */
+.container {
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+}
+.container-wide { max-width:1400px; margin:0 auto; padding:0 24px; }
+
+.glass {
+  background:var(--surface);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+}
+.glass-strong {
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(40px);
+  -webkit-backdrop-filter:blur(40px);
+  border:1px solid rgba(255,255,255,0.1);
+}
+
+.gradient-text {
+  background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#22d3ee 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.gradient-text-warm {
+  background:linear-gradient(135deg,#f472b6 0%,#a78bfa 50%,#60a5fa 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.badge {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 14px;
+  background:rgba(99,102,241,0.15);
+  border:1px solid rgba(99,102,241,0.3);
+  border-radius:100px;
+  font-size:13px; font-weight:600; color:var(--accent);
+  letter-spacing:0.02em;
+}
+.badge-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--cyan2);
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.5; transform:scale(0.8); }
+}
+
+/* ─── BUTTONS ───────────────────────────────────────────────── */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 28px;
+  border-radius:var(--r-md);
+  font-size:15px; font-weight:600;
+  border:none; transition:all 0.2s var(--ease);
+  position:relative; overflow:hidden;
+  white-space:nowrap;
+}
+.btn:focus-visible { outline:2px solid var(--blue2); outline-offset:2px; }
+
+.btn-primary {
+  background:linear-gradient(135deg,var(--indigo),var(--purple));
+  color:#fff;
+  box-shadow:0 0 0 0 rgba(99,102,241,0);
+}
+.btn-primary:hover {
+  transform:translateY(-1px);
+  box-shadow:0 8px 32px rgba(99,102,241,0.4);
+}
+.btn-primary:active { transform:translateY(0); }
+
+.btn-ghost {
+  background:var(--surface2);
+  color:var(--white);
+  border:1px solid var(--border);
+}
+.btn-ghost:hover {
+  background:rgba(255,255,255,0.1);
+  border-color:rgba(255,255,255,0.2);
+}
+
+.btn-cyan {
+  background:linear-gradient(135deg,#0891b2,#06b6d4);
+  color:#fff;
+}
+.btn-cyan:hover {
+  transform:translateY(-1px);
+  box-shadow:0 8px 32px rgba(6,182,212,0.4);
+}
+
+.btn-lg { padding:18px 36px; font-size:16px; border-radius:var(--r-lg); }
+.btn-sm { padding:10px 20px; font-size:13px; border-radius:var(--r-sm); }
+
+.btn-icon {
+  width:20px; height:20px;
+  transition:transform 0.2s var(--ease);
+}
+.btn:hover .btn-icon { transform:translateX(3px); }
+
+/* ─── NAV ────────────────────────────────────────────────────── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:16px 0;
+  transition:all 0.3s var(--ease);
+}
+nav.scrolled {
+  background:rgba(3,3,10,0.85);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:12px 0;
+}
+.nav-inner {
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo {
+  display:flex; align-items:center; gap:10px;
+  font-size:20px; font-weight:800; letter-spacing:-0.02em;
+}
+.nav-logo-mark {
+  width:36px; height:36px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden;
+  box-shadow:0 0 20px rgba(99,102,241,0.5);
+}
+.nav-logo-mark img { width:36px; height:36px; object-fit:cover; filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(99,102,241,0.9)); }
+.nav-links {
+  display:flex; align-items:center; gap:4px;
+}
+.nav-links a {
+  padding:8px 14px;
+  border-radius:var(--r-sm);
+  font-size:14px; font-weight:500; color:var(--muted);
+  transition:all 0.2s;
+}
+.nav-links a:hover { color:var(--white); background:var(--surface2); }
+.nav-actions { display:flex; align-items:center; gap:10px; }
+.nav-menu-btn {
+  display:none;
+  background:none; border:1px solid var(--border);
+  border-radius:var(--r-sm); padding:8px;
+  color:var(--white);
+}
+.mobile-nav {
+  display:none; position:fixed; top:70px; left:0; right:0; z-index:99;
+  background:rgba(3,3,10,0.98); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:20px;
+  flex-direction:column; gap:8px;
+}
+.mobile-nav.open { display:flex; }
+.mobile-nav a { padding:12px 16px; border-radius:var(--r-sm); font-size:15px; color:var(--muted); }
+.mobile-nav a:hover { color:var(--white); background:var(--surface2); }
+
+/* ─── HERO ───────────────────────────────────────────────────── */
+.hero {
+  min-height:100vh;
+  display:flex; align-items:center;
+  padding:120px 0 80px;
+  position:relative;
+  z-index:1;
+}
+.hero-glow {
+  position:absolute;
+  top:20%; left:50%;
+  width:900px; height:600px;
+  background:radial-gradient(ellipse,rgba(99,102,241,0.12) 0%,rgba(139,92,246,0.06) 40%,transparent 70%);
+  pointer-events:none;
+  transform:translate(calc(-50% + var(--gx,0px)), var(--gy,0px));
+  transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
+  will-change:transform;
+}
+@media (prefers-reduced-motion: reduce){ .hero-glow{ transform:translateX(-50%) !important; transition:none !important; } }
+.hero-content {
+  text-align:center;
+  max-width:860px; margin:0 auto;
+  position:relative;
+}
+.hero-eyebrow {
+  margin-bottom:24px;
+  display:flex; justify-content:center;
+}
+.hero h1 {
+  font-size:clamp(42px,6vw,80px);
+  font-weight:800;
+  line-height:1.08;
+  letter-spacing:-0.03em;
+  margin-bottom:24px;
+}
+.hero-sub {
+  font-size:clamp(17px,2vw,20px);
+  color:var(--muted);
+  max-width:600px; margin:0 auto 40px;
+  line-height:1.7;
+}
+.hero-ctas {
+  display:flex; align-items:center; justify-content:center;
+  flex-wrap:wrap; gap:14px;
+  margin-bottom:60px;
+}
+.hero-trust {
+  display:flex; align-items:center; justify-content:center;
+  gap:24px; flex-wrap:wrap;
+  color:var(--muted2); font-size:13px;
+}
+.hero-trust-item {
+  display:flex; align-items:center; gap:6px;
+}
+.hero-trust-icon { color:var(--cyan2); font-size:14px; }
+
+/* Typewriter */
+.typewriter-wrap {
+  display:inline;
+}
+#typewriter {
+  color:transparent;
+  background:linear-gradient(135deg,#60a5fa,#a78bfa,#22d3ee);
+  -webkit-background-clip:text; background-clip:text;
+  border-right:3px solid var(--accent);
+  padding-right:4px;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+
+/* Hero stats */
+.hero-stats {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  border:1px solid var(--border);
+  margin-top:60px;
+}
+.hero-stat {
+  background:var(--bg2);
+  padding:28px;
+  text-align:center;
+}
+.hero-stat-num {
+  font-size:36px; font-weight:800; letter-spacing:-0.03em;
+  line-height:1;
+  background:linear-gradient(135deg,var(--blue2),var(--accent));
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero-stat-label { font-size:13px; color:var(--muted); margin-top:6px; }
+
+/* ─── SECTION COMMON ─────────────────────────────────────────── */
+section { position:relative; z-index:1; }
+.section-header { text-align:center; margin-bottom:64px; }
+.section-header h2 {
+  font-size:clamp(32px,4vw,52px);
+  font-weight:800; letter-spacing:-0.03em;
+  line-height:1.1; margin-bottom:16px;
+}
+.section-header p { font-size:17px; color:var(--muted); max-width:540px; margin:0 auto; }
+.section-badge { margin-bottom:16px; }
+
+/* ─── MARQUEE LOGOS ─────────────────────────────────────────── */
+.logos-section { padding:40px 0; overflow:hidden; position:relative; z-index:1; }
+.logos-label { text-align:center; font-size:13px; color:var(--muted2); margin-bottom:20px; letter-spacing:0.08em; text-transform:uppercase; }
+.marquee-track {
+  display:flex; gap:48px;
+  animation:marquee 30s linear infinite;
+  width:max-content;
+}
+.marquee-track:hover { animation-play-state:paused; }
+@keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.logo-chip {
+  display:flex; align-items:center; gap:8px;
+  padding:10px 20px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:100px; white-space:nowrap;
+  font-size:14px; font-weight:600; color:var(--muted);
+}
+
+/* ─── FEATURES ───────────────────────────────────────────────── */
+.features-section { padding:100px 0; }
+.features-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--border);
+  border-radius:var(--r-2xl); overflow:hidden;
+  border:1px solid var(--border);
+}
+.feature-card {
+  background:var(--bg2);
+  padding:40px;
+  transition:background 0.2s;
+  position:relative; overflow:hidden;
+}
+.feature-card::before {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,var(--glow-blue),transparent);
+  opacity:0; transition:opacity 0.3s;
+}
+.feature-card:hover { background:var(--bg3); }
+.feature-card:hover::before { opacity:1; }
+.feature-icon {
+  width:52px; height:52px; border-radius:var(--r-md);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:20px; font-size:24px;
+}
+.fi-blue { background:rgba(59,130,246,0.15); }
+.fi-purple { background:rgba(139,92,246,0.15); }
+.fi-cyan { background:rgba(6,182,212,0.15); }
+.fi-pink { background:rgba(236,72,153,0.15); }
+.fi-green { background:rgba(34,197,94,0.15); }
+.fi-orange { background:rgba(249,115,22,0.15); }
+.feature-card h3 { font-size:18px; font-weight:700; margin-bottom:10px; }
+.feature-card p { font-size:14px; color:var(--muted); line-height:1.6; }
+
+/* ─── TOOLS ──────────────────────────────────────────────────── */
+.tools-section { padding:100px 0; }
+.tools-filter {
+  display:flex; align-items:center; justify-content:center;
+  gap:8px; flex-wrap:wrap; margin-bottom:48px;
+}
+.filter-btn {
+  padding:8px 18px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:100px; font-size:13px; font-weight:600; color:var(--muted);
+  transition:all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background:var(--indigo); border-color:var(--indigo); color:#fff;
+}
+.tools-grid {
+  display:grid; grid-template-columns:repeat(5,1fr);
+  gap:16px;
+}
+.tool-card {
+  display:block;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);
+  padding:24px 20px;
+  cursor:pointer;
+  transition:transform 0.4s var(--ease), background 0.25s, border-color 0.25s, box-shadow 0.4s;
+  position:relative; overflow:hidden;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.tool-card:hover {
+  box-shadow:0 20px 60px -20px rgba(99,102,241,0.35);
+}
+/* 3D tilt — JS sets --rx/--ry on mousemove, lightweight, GPU-only */
+.tilt-3d {
+  transform: perspective(900px) rotateX(var(--ry,0deg)) rotateY(var(--rx,0deg)) translateY(var(--ty,0px)) scale(var(--ts,1));
+}
+/* scroll-linked subtle rotation/parallax — native CSS scroll-driven animation where supported */
+@supports (animation-timeline: view()) {
+  .scroll-spin {
+    animation: spin-on-scroll linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+  }
+  @keyframes spin-on-scroll {
+    from { transform: perspective(900px) rotateY(-18deg) translateY(40px); opacity:.4; }
+    to   { transform: perspective(900px) rotateY(0deg) translateY(0); opacity:1; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tilt-3d, .scroll-spin { transform:none !important; animation:none !important; }
+}
+.tool-card::after {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--indigo),var(--cyan));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.3s var(--ease);
+}
+.tool-card:hover {
+  background:var(--surface2);
+  border-color:rgba(99,102,241,0.4);
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(99,102,241,0.2);
+}
+.tool-card:hover::after { transform:scaleX(1); }
+.tool-emoji {
+  font-size:28px; margin-bottom:12px; display:block;
+  transform:translateZ(30px) scale(1);
+  transition:transform 0.4s var(--ease);
+}
+.tool-card:hover .tool-emoji { transform:translateZ(50px) scale(1.18) rotate(-6deg); }
+@media (prefers-reduced-motion: reduce){ .tool-emoji, .tool-card:hover .tool-emoji { transform:none !important; } }
+.tool-name { font-size:14px; font-weight:700; margin-bottom:4px; }
+.tool-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+.tool-badge {
+  display:inline-block; margin-top:10px;
+  padding:3px 8px; border-radius:100px;
+  font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+  background:rgba(99,102,241,0.2); color:var(--accent);
+}
+
+/* ─── AUTOMATION ─────────────────────────────────────────────── */
+.automation-section { padding:100px 0; }
+.automation-inner {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:center;
+}
+.auto-visual {
+  position:relative; height:420px;
+}
+.auto-node {
+  position:absolute;
+  background:var(--surface2);
+  border:1px solid var(--border2);
+  border-radius:var(--r-lg);
+  padding:16px 20px;
+  font-size:13px; font-weight:600;
+  display:flex; align-items:center; gap:10px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  animation:float-node 4s ease-in-out infinite;
+}
+.auto-node:nth-child(2) { animation-delay:.5s; }
+.auto-node:nth-child(3) { animation-delay:1s; }
+.auto-node:nth-child(4) { animation-delay:1.5s; }
+.auto-node:nth-child(5) { animation-delay:2s; }
+.auto-node:nth-child(6) { animation-delay:2.5s; }
+@keyframes float-node {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-8px); }
+}
+.node-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.nd-blue { background:var(--blue); box-shadow:0 0 8px var(--blue); }
+.nd-purple { background:var(--purple); box-shadow:0 0 8px var(--purple); }
+.nd-cyan { background:var(--cyan2); box-shadow:0 0 8px var(--cyan2); }
+.nd-green { background:#22c55e; box-shadow:0 0 8px #22c55e; }
+
+/* flow lines SVG */
+.flow-lines { position:absolute; inset:0; pointer-events:none; }
+
+.auto-content h2 {
+  font-size:clamp(32px,3vw,46px);
+  font-weight:800; letter-spacing:-0.03em; line-height:1.1;
+  margin-bottom:20px;
+}
+.auto-content p { color:var(--muted); font-size:16px; line-height:1.7; margin-bottom:32px; }
+.auto-points { display:flex; flex-direction:column; gap:16px; margin-bottom:36px; }
+.auto-point {
+  display:flex; align-items:flex-start; gap:14px;
+}
+.auto-point-icon {
+  width:36px; height:36px; border-radius:10px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px;
+}
+.auto-point h4 { font-size:15px; font-weight:700; margin-bottom:2px; }
+.auto-point p { font-size:13px; color:var(--muted); margin:0; }
+
+/* ─── PRODUCTS ───────────────────────────────────────────────── */
+.products-section { padding:100px 0; }
+.products-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+.product-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform 0.45s var(--ease), border-color 0.25s, box-shadow 0.45s;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.product-card:hover {
+  border-color:rgba(99,102,241,0.4);
+  transform:translateY(-6px) scale(1.015);
+  box-shadow:0 24px 70px -10px rgba(99,102,246,0.4), 0 20px 60px rgba(0,0,0,0.5);
+}
+.product-cover {
+  height:160px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:52px;
+  position:relative; overflow:hidden;
+}
+.product-cover img.pc-logo {
+  width:72px; height:72px; object-fit:contain;
+  position:relative; z-index:2;
+  filter:drop-shadow(0 0 18px rgba(99,102,241,0.7)) drop-shadow(0 0 6px rgba(6,182,212,0.5));
+}
+.pc-1 { background:linear-gradient(135deg,#1e1b4b,#312e81); }
+.pc-2 { background:linear-gradient(135deg,#0c4a6e,#0369a1); }
+.pc-3 { background:linear-gradient(135deg,#4c1d95,#6d28d9); }
+.pc-4 { background:linear-gradient(135deg,#164e63,#0e7490); }
+.pc-5 { background:linear-gradient(135deg,#1e3a5f,#1d4ed8); }
+.pc-6 { background:linear-gradient(135deg,#2d1b69,#7c3aed); }
+.pc-7 { background:linear-gradient(135deg,#0f4c75,#1b6ca8); }
+.pc-8 { background:linear-gradient(135deg,#1a1a2e,#16213e); }
+.product-cover::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1), transparent 60%);
+}
+.product-info { padding:20px; }
+.product-info h3 { font-size:15px; font-weight:700; margin-bottom:6px; }
+.product-info p { font-size:13px; color:var(--muted); margin-bottom:14px; line-height:1.5; }
+.product-meta {
+  display:flex; align-items:center; justify-content:space-between;
+}
+.product-price { font-size:16px; font-weight:800; color:var(--blue2); }
+.product-price span { font-size:11px; color:var(--muted); font-weight:400; }
+.product-tag {
+  font-size:11px; font-weight:700;
+  padding:4px 10px; border-radius:100px;
+  background:rgba(6,182,212,0.15); color:var(--cyan2);
+}
+
+/* ─── TESTIMONIALS ───────────────────────────────────────────── */
+.testimonials-section { padding:100px 0; }
+.testimonials-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.testimonial-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  padding:32px;
+  transition:all 0.25s var(--ease);
+}
+.testimonial-card:hover {
+  border-color:rgba(99,102,241,0.3);
+  transform:translateY(-2px);
+}
+.t-stars { color:#fbbf24; font-size:14px; margin-bottom:16px; letter-spacing:2px; }
+.t-quote { font-size:15px; line-height:1.7; color:var(--muted); margin-bottom:24px; }
+.t-quote strong { color:var(--white); }
+.t-author { display:flex; align-items:center; gap:12px; }
+.t-avatar {
+  width:44px; height:44px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; font-weight:700;
+  flex-shrink:0;
+}
+.ta-1 { background:linear-gradient(135deg,#3b82f6,#6366f1); }
+.ta-2 { background:linear-gradient(135deg,#8b5cf6,#ec4899); }
+.ta-3 { background:linear-gradient(135deg,#06b6d4,#3b82f6); }
+.ta-4 { background:linear-gradient(135deg,#f97316,#eab308); }
+.ta-5 { background:linear-gradient(135deg,#22c55e,#06b6d4); }
+.ta-6 { background:linear-gradient(135deg,#a855f7,#6366f1); }
+.t-name { font-size:14px; font-weight:700; }
+.t-role { font-size:12px; color:var(--muted); }
+
+/* ─── PRICING ────────────────────────────────────────────────── */
+.pricing-section { padding:100px 0; }
+.pricing-toggle {
+  display:flex; align-items:center; justify-content:center;
+  gap:12px; margin-bottom:48px;
+}
+.toggle-label { font-size:14px; color:var(--muted); font-weight:600; }
+.toggle-switch {
+  width:52px; height:28px;
+  background:var(--indigo);
+  border-radius:100px; cursor:pointer;
+  position:relative; border:none;
+}
+.toggle-thumb {
+  width:22px; height:22px; border-radius:50%;
+  background:#fff; position:absolute;
+  top:3px; left:3px;
+  transition:transform 0.2s var(--ease);
+}
+.toggle-switch.annual .toggle-thumb { transform:translateX(24px); }
+.save-badge {
+  background:rgba(34,197,94,0.15); color:#4ade80;
+  border:1px solid rgba(34,197,94,0.3);
+  padding:4px 10px; border-radius:100px;
+  font-size:12px; font-weight:700;
+}
+
+.pricing-grid {
+  display:grid; grid-template-columns:repeat(5,1fr);
+  gap:16px; align-items:end;
+}
+.pricing-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  padding:28px 24px;
+  position:relative;
+  transition:all 0.25s var(--ease);
+}
+.pricing-card.featured {
+  background:linear-gradient(160deg,rgba(99,102,241,0.2),rgba(139,92,246,0.1));
+  border-color:rgba(99,102,241,0.5);
+  padding-top:44px;
+}
+.pricing-card:hover {
+  transform:translateY(-4px);
+  border-color:rgba(99,102,241,0.4);
+}
+.pricing-card.featured:hover { transform:translateY(-6px); }
+.popular-tag {
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--indigo),var(--purple));
+  color:#fff; padding:5px 16px; border-radius:100px;
+  font-size:12px; font-weight:700; white-space:nowrap;
+}
+.plan-name { font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; }
+.plan-inr { font-size:12px; color:var(--muted); margin-top:2px; margin-bottom:0; }
+.price-inr { font-size:12px; color:var(--muted); font-weight:400; }
+.plan-price {
+  font-size:36px; font-weight:800; letter-spacing:-0.03em; line-height:1;
+  margin-bottom:4px;
+}
+.plan-price span { font-size:16px; color:var(--muted); font-weight:400; }
+.plan-desc { font-size:13px; color:var(--muted); margin-bottom:24px; }
+.plan-cta { width:100%; margin-bottom:24px; }
+.plan-features { display:flex; flex-direction:column; gap:10px; }
+.plan-feature {
+  display:flex; align-items:flex-start; gap:8px;
+  font-size:13px; color:var(--muted);
+}
+.plan-feature-icon { color:var(--cyan2); flex-shrink:0; margin-top:1px; }
+.plan-feature.muted { color:var(--muted2); }
+.plan-feature.muted .plan-feature-icon { color:var(--muted2); }
+
+/* ─── FAQ ────────────────────────────────────────────────────── */
+.faq-section { padding:100px 0; }
+.faq-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:16px; max-width:900px; margin:0 auto;
+}
+.faq-item {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden;
+}
+.faq-q {
+  padding:20px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  cursor:pointer; font-size:15px; font-weight:600;
+  transition:background 0.2s;
+}
+.faq-q:hover { background:var(--surface2); }
+.faq-icon {
+  width:24px; height:24px; flex-shrink:0;
+  border-radius:50%; background:var(--surface2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:var(--accent);
+  transition:transform 0.2s var(--ease);
+}
+.faq-item.open .faq-icon { transform:rotate(45deg); }
+.faq-a {
+  max-height:0; overflow:hidden;
+  transition:max-height 0.3s var(--ease);
+}
+.faq-item.open .faq-a { max-height:300px; }
+.faq-a-inner {
+  padding:0 24px 20px;
+  font-size:14px; color:var(--muted); line-height:1.7;
+}
+
+/* ─── CTA SECTION ────────────────────────────────────────────── */
+.cta-section { padding:120px 0; }
+.cta-inner {
+  background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1),rgba(6,182,212,0.08));
+  border:1px solid rgba(99,102,241,0.3);
+  border-radius:var(--r-2xl);
+  padding:80px 60px;
+  text-align:center;
+  position:relative; overflow:hidden;
+}
+.cta-inner::before {
+  content:'';
+  position:absolute;
+  top:-100px; left:50%; transform:translateX(-50%);
+  width:600px; height:400px;
+  background:radial-gradient(ellipse,rgba(99,102,241,0.2),transparent 70%);
+  pointer-events:none;
+}
+.cta-inner h2 {
+  font-size:clamp(36px,4vw,60px);
+  font-weight:800; letter-spacing:-0.03em;
+  margin-bottom:20px; position:relative;
+}
+.cta-inner p { font-size:18px; color:var(--muted); margin-bottom:40px; position:relative; }
+.cta-actions { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; position:relative; }
+
+/* ─── FOOTER ─────────────────────────────────────────────────── */
+footer {
+  border-top:1px solid var(--border);
+  padding:60px 0 32px;
+  position:relative; z-index:1;
+}
+.footer-grid {
+  display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+  gap:48px; margin-bottom:48px;
+}
+.footer-brand p { font-size:14px; color:var(--muted); margin:12px 0 20px; line-height:1.6; max-width:260px; }
+.footer-social { display:flex; gap:10px; }
+.social-link {
+  width:36px; height:36px; border-radius:var(--r-sm);
+  background:var(--surface); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; color:var(--muted);
+  transition:all 0.2s;
+}
+.social-link:hover { background:var(--surface2); color:var(--white); border-color:rgba(255,255,255,0.15); }
+.footer-col h4 { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted2); margin-bottom:16px; }
+.footer-col a {
+  display:block; padding:4px 0;
+  font-size:14px; color:var(--muted);
+  transition:color 0.2s;
+}
+.footer-col a:hover { color:var(--white); }
+.footer-bottom {
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:24px; border-top:1px solid var(--border);
+  font-size:13px; color:var(--muted2); flex-wrap:wrap; gap:12px;
+}
+.footer-bottom-links { display:flex; gap:20px; }
+.footer-bottom-links a { color:var(--muted2); }
+.footer-bottom-links a:hover { color:var(--muted); }
+
+/* ─── DASHBOARD PREVIEW ──────────────────────────────────────── */
+.dashboard-section { padding:100px 0; }
+.dashboard-preview {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--r-2xl);
+  overflow:hidden;
+  box-shadow:0 40px 120px rgba(0,0,0,0.6);
+  position:relative; z-index:1;
+}
+.db-topbar {
+  background:var(--bg3);
+  border-bottom:1px solid var(--border);
+  padding:14px 24px;
+  display:flex; align-items:center; gap:16px;
+}
+.db-dots { display:flex; gap:6px; }
+.db-dot { width:12px; height:12px; border-radius:50%; }
+.db-dot-r { background:#ef4444; }
+.db-dot-y { background:#f59e0b; }
+.db-dot-g { background:#22c55e; }
+.db-tabs { display:flex; gap:2px; }
+.db-tab {
+  padding:6px 14px; border-radius:var(--r-sm);
+  font-size:13px; font-weight:500; color:var(--muted);
+  cursor:default; user-select:none;
+}
+.db-tab.active { background:var(--indigo); color:#fff; }
+.db-inner {
+  display:grid; grid-template-columns:1fr;
+  min-height:400px;
+}
+.db-sidebar { display:none; }
+.db-sidebar-logo { display:none; }
+.db-nav-item { display:none; }
+.db-nav-icon { display:none; }
+.db-main { padding:28px; }
+.db-greeting { font-size:22px; font-weight:800; margin-bottom:4px; }
+.db-sub { font-size:14px; color:var(--muted); margin-bottom:24px; }
+.db-stats-row {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:14px; margin-bottom:24px;
+}
+.db-stat-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:16px;
+}
+.db-stat-title { font-size:12px; color:var(--muted); margin-bottom:6px; font-weight:600; }
+.db-stat-val { font-size:24px; font-weight:800; letter-spacing:-0.02em; }
+.db-stat-change { font-size:12px; color:#4ade80; margin-top:2px; }
+.db-row2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.db-recent, .db-tools-list {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:18px;
+}
+.db-section-title { font-size:13px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:14px; }
+.db-item {
+  display:flex; align-items:center; gap:10px;
+  padding:8px 0; border-bottom:1px solid var(--border);
+  font-size:13px;
+}
+.db-item:last-child { border-bottom:none; }
+.db-item-icon { font-size:16px; }
+.db-item-name { font-weight:600; flex:1; }
+.db-item-time { font-size:11px; color:var(--muted); }
+.db-item-status {
+  font-size:11px; font-weight:700; padding:3px 8px; border-radius:100px;
+}
+.s-done { background:rgba(34,197,94,0.15); color:#4ade80; }
+.s-prog { background:rgba(251,191,36,0.15); color:#fbbf24; }
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+.reveal {
+  opacity:0; transform:translateY(24px);
+  transition:opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.reveal.visible { opacity:1; transform:none; }
+.reveal-delay-1 { transition-delay:0.1s; }
+.reveal-delay-2 { transition-delay:0.2s; }
+.reveal-delay-3 { transition-delay:0.3s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:1100px) {
+  .tools-grid { grid-template-columns:repeat(4,1fr); }
+  .pricing-grid { grid-template-columns:repeat(3,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr 1fr; }
+}
+@media(max-width:900px) {
+  .features-grid { grid-template-columns:repeat(2,1fr); }
+  .tools-grid { grid-template-columns:repeat(3,1fr); }
+  .automation-inner { grid-template-columns:1fr; }
+  .auto-visual { display:none; }
+  .testimonials-grid { grid-template-columns:1fr 1fr; }
+  .products-grid { grid-template-columns:repeat(2,1fr); }
+  .pricing-grid { grid-template-columns:repeat(2,1fr); }
+  .faq-grid { grid-template-columns:1fr; }
+  .db-inner { grid-template-columns:1fr; }
+  .db-sidebar { display:none; }
+}
+@media(max-width:640px) {
+  .nav-links { display:none; }
+  .nav-menu-btn { display:flex; }
+  .nav-actions .btn-ghost { display:none; }
+  .features-grid { grid-template-columns:1fr; }
+  .tools-grid { grid-template-columns:repeat(2,1fr); }
+  .testimonials-grid { grid-template-columns:1fr; }
+  .products-grid { grid-template-columns:1fr; }
+  .pricing-grid { grid-template-columns:1fr; }
+  .hero-stats { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+  .db-stats-row { grid-template-columns:repeat(2,1fr); }
+  .db-row2 { grid-template-columns:1fr; }
+  .footer-bottom { flex-direction:column; text-align:center; }
+  .cta-inner { padding:48px 24px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── PARTICLE CANVAS ─────────────────────────────────────── -->
+<canvas id="canvas-bg"></canvas>
+
+<!-- ─── NAV ─────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="GeetAI Home">
+        <div class="nav-logo-mark" aria-hidden="true"><img src="android-chrome-512x512.png" alt="GeetAI logo"></div>
+      </a>
+      <ul class="nav-links" role="navigation" aria-label="Main navigation">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#automation">Automation</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn btn-ghost btn-sm">Sign In</button>
+        <button class="btn btn-primary btn-sm">Start Free
+          <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+  <a href="#features">Features</a>
+  <a href="#tools">Tools</a>
+  <a href="#automation">Automation</a>
+  <a href="#products">Products</a>
+  <a href="#pricing">Pricing</a>
+  <div style="display:flex;gap:10px;margin-top:8px;">
+    <button class="btn btn-ghost" style="flex:1">Sign In</button>
+    <button class="btn btn-primary" style="flex:1">Start Free</button>
+  </div>
+</div>
+
+<!-- ─── HERO ──────────────────────────────────────────────────── -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="badge" role="status">
+          <span class="badge-dot" aria-hidden="true"></span>
+          Now live — 30 AI tools in one platform
+        </span>
+      </div>
+      <h1>
+        Your AI OS<br>
+        For <span id="typewriter">Business Growth</span>
+      </h1>
+      <p class="hero-sub">
+        GeetAI gives you 30 AI-powered business tools. Generate leads, write proposals, automate workflows, and create content — 10× faster.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-lg" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+          Start Free — No Credit Card
+          <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+        <button class="btn btn-ghost btn-lg" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">
+          View All 30 Tools
+        </button>
+      </div>
+      <div class="hero-trust" role="list" aria-label="Trust signals">
+        <div class="hero-trust-item" role="listitem">
+          <span class="hero-trust-icon" aria-hidden="true">✓</span>
+          Free plan available
+        </div>
+        <div class="hero-trust-item" role="listitem">
+          <span class="hero-trust-icon" aria-hidden="true">✓</span>
+          No setup required
+        </div>
+        <div class="hero-trust-item" role="listitem">
+          <span class="hero-trust-icon" aria-hidden="true">✓</span>
+          Cancel anytime
+        </div>
+        <div class="hero-trust-item" role="listitem">
+          <span class="hero-trust-icon" aria-hidden="true">✓</span>
+          Enterprise-grade security
+        </div>
+      </div>
+      <div class="hero-stats reveal" role="region" aria-label="Platform statistics">
+        <div class="hero-stat">
+          <div class="hero-stat-num" aria-label="10,000 plus users">10K+</div>
+          <div class="hero-stat-label">Active Users</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" aria-label="30 AI tools">30</div>
+          <div class="hero-stat-label">AI Tools</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" aria-label="5 million outputs generated">5M+</div>
+          <div class="hero-stat-label">Outputs Generated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── LOGOS ──────────────────────────────────────────────────── -->
+<div class="logos-section" aria-label="Used by businesses across industries">
+  <p class="logos-label">Trusted by businesses worldwide</p>
+  <div class="marquee-track" role="list">
+    <div class="logo-chip" role="listitem">🏢 Startups</div>
+    <div class="logo-chip" role="listitem">📊 Marketing Agencies</div>
+    <div class="logo-chip" role="listitem">🏠 Real Estate Firms</div>
+    <div class="logo-chip" role="listitem">⚖️ Legal Teams</div>
+    <div class="logo-chip" role="listitem">🎓 EdTech Platforms</div>
+    <div class="logo-chip" role="listitem">🛍️ E-Commerce Brands</div>
+    <div class="logo-chip" role="listitem">💼 Consultants</div>
+    <div class="logo-chip" role="listitem">🏗️ Construction Firms</div>
+    <div class="logo-chip" role="listitem">💊 Healthcare Providers</div>
+    <div class="logo-chip" role="listitem">🎨 Creative Agencies</div>
+    <!-- duplicate for seamless loop -->
+    <div class="logo-chip" role="listitem" aria-hidden="true">🏢 Startups</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">📊 Marketing Agencies</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">🏠 Real Estate Firms</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">⚖️ Legal Teams</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">🎓 EdTech Platforms</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">🛍️ E-Commerce Brands</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">💼 Consultants</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">🏗️ Construction Firms</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">💊 Healthcare Providers</div>
+    <div class="logo-chip" role="listitem" aria-hidden="true">🎨 Creative Agencies</div>
+  </div>
+</div>
+
+<!-- ─── FEATURES ─────────────────────────────────────────────── -->
+<section class="features-section" id="features" aria-label="Platform features">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Why GeetAI</span>
+      </div>
+      <h2>One platform.<br><span class="gradient-text">Everything you need.</span></h2>
+      <p>Stop juggling 10 different tools. GeetAI consolidates every AI capability your business needs into a single, powerful operating system.</p>
+    </div>
+    <div class="features-grid" role="list">
+      <article class="feature-card reveal" role="listitem">
+        <div class="feature-icon fi-blue" aria-hidden="true">🎯</div>
+        <h3>Lead Generation Engine</h3>
+        <p>Identify, qualify and reach your ideal customers automatically. GeetAI Leads finds prospects and builds outreach sequences for you.</p>
+      </article>
+      <article class="feature-card reveal reveal-delay-1" role="listitem">
+        <div class="feature-icon fi-purple" aria-hidden="true">🤖</div>
+        <h3>30 AI-Powered Tools</h3>
+        <p>From proposals to contracts, content to SEO — every business document and workflow has a dedicated AI tool built for speed and quality.</p>
+      </article>
+      <article class="feature-card reveal reveal-delay-2" role="listitem">
+        <div class="feature-icon fi-cyan" aria-hidden="true">⚡</div>
+        <h3>Workflow Automation</h3>
+        <p>Build multi-step automation workflows that run 24/7. Connect your tools, set triggers, and watch your business operate on autopilot.</p>
+      </article>
+      <article class="feature-card reveal" role="listitem">
+        <div class="feature-icon fi-pink" aria-hidden="true">📦</div>
+        <h3>Digital Product Store</h3>
+        <p>Buy ready-made prompt packs, automation systems, and business templates. Download and deploy in minutes — not months.</p>
+      </article>
+      <article class="feature-card reveal reveal-delay-1" role="listitem">
+        <div class="feature-icon fi-green" aria-hidden="true">📈</div>
+        <h3>Revenue Analytics</h3>
+        <p>Track MRR, conversion rates, tool usage and customer lifetime value from a single dashboard. Know what's growing your business.</p>
+      </article>
+      <article class="feature-card reveal reveal-delay-2" role="listitem">
+        <div class="feature-icon fi-orange" aria-hidden="true">🔒</div>
+        <h3>Enterprise Security</h3>
+        <p>Role-based access, encrypted storage, rate limiting and audit logs. Your data and your clients' data stay secure — always.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DASHBOARD PREVIEW ─────────────────────────────────────── -->
+<section class="dashboard-section" aria-label="Dashboard preview">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Dashboard</span>
+      </div>
+      <h2>Your command center<br>for <span class="gradient-text">AI-powered growth</span></h2>
+      <p>See all your projects, outputs, usage analytics and tool performance from one beautiful dashboard.</p>
+    </div>
+    <div class="dashboard-preview reveal" role="img" aria-label="GeetAI dashboard interface preview">
+      <div class="db-topbar">
+        <div class="db-dots" aria-hidden="true">
+          <div class="db-dot db-dot-r"></div>
+          <div class="db-dot db-dot-y"></div>
+          <div class="db-dot db-dot-g"></div>
+        </div>
+        <div class="db-tabs" role="tablist">
+          <div class="db-tab active" role="tab" aria-selected="true">Overview</div>
+          <div class="db-tab" role="tab" aria-selected="false">Projects</div>
+          <div class="db-tab" role="tab" aria-selected="false">Analytics</div>
+        </div>
+      </div>
+      <div class="db-inner">
+        <nav class="db-sidebar" aria-label="Dashboard navigation">
+          <div class="db-sidebar-logo">GeetAI</div>
+          <div class="db-nav-item active"><span class="db-nav-icon" aria-hidden="true">⊞</span> Overview</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">🎯</span> AI Tools</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">📁</span> Projects</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">🕐</span> History</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">⚡</span> Automations</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">🛍️</span> Store</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">📊</span> Analytics</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">💳</span> Billing</div>
+          <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">⚙️</span> Settings</div>
+        </nav>
+        <main class="db-main">
+          <div class="db-greeting">Good morning, Aniket 👋</div>
+          <div class="db-sub">Here's your business growth summary for today</div>
+          <div class="db-stats-row" role="region" aria-label="Key metrics">
+            <div class="db-stat-card">
+              <div class="db-stat-title">Leads Generated</div>
+              <div class="db-stat-val gradient-text">247</div>
+              <div class="db-stat-change">↑ 32% this week</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-title">Proposals Sent</div>
+              <div class="db-stat-val gradient-text">18</div>
+              <div class="db-stat-change">↑ 12% this week</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-title">Content Created</div>
+              <div class="db-stat-val gradient-text">94</div>
+              <div class="db-stat-change">↑ 58% this week</div>
+            </div>
+            <div class="db-stat-card">
+              <div class="db-stat-title">Time Saved</div>
+              <div class="db-stat-val gradient-text">38h</div>
+              <div class="db-stat-change">This month</div>
+            </div>
+          </div>
+          <div class="db-row2">
+            <div class="db-recent">
+              <div class="db-section-title">Recent Outputs</div>
+              <div class="db-item">
+                <span class="db-item-icon" aria-hidden="true">📄</span>
+                <span class="db-item-name">Proposal — TechCorp</span>
+                <span class="db-item-time">2m ago</span>
+                <span class="db-item-status s-done">Done</span>
+              </div>
+              <div class="db-item">
+                <span class="db-item-icon" aria-hidden="true">🎯</span>
+                <span class="db-item-name">Lead List — Mumbai</span>
+                <span class="db-item-time">18m ago</span>
+                <span class="db-item-status s-done">Done</span>
+              </div>
+              <div class="db-item">
+                <span class="db-item-icon" aria-hidden="true">✍️</span>
+                <span class="db-item-name">Blog — AI Trends 2025</span>
+                <span class="db-item-time">1h ago</span>
+                <span class="db-item-status s-prog">Editing</span>
+              </div>
+            </div>
+            <div class="db-tools-list">
+              <div class="db-section-title">Top Tools Today</div>
+              <div class="db-item">
+                <span class="db-item-icon" aria-hidden="true">🎯</span>
+                <span class="db-item-name">GeetAI Leads</span>
+                <span class="db-item-time">12 runs</span>
+              </div>
+              <div class="db-item">
+                <span class="db-item-icon" aria-hidden="true">📝</span>
+                <span class="db-item-name">GeetAI Proposals</span>
+                <span class="db-item-time">8 runs</span>
+              </div>
+              <div class="db-item">
+                <span class="db-item-icon" aria-hidden="true">✍️</span>
+                <span class="db-item-name">GeetAI Content</span>
+                <span class="db-item-time">24 runs</span>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOOLS ──────────────────────────────────────────────────── -->
+<section class="tools-section" id="tools" aria-label="AI tools">
+  <div class="container-wide">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>30 AI Tools</span>
+      </div>
+      <h2>Every tool your business<br><span class="gradient-text">will ever need</span></h2>
+      <p>One subscription. 30 specialist AI tools. Each built for a specific business outcome — not just "AI writing."</p>
+    </div>
+    <div class="tools-filter" role="group" aria-label="Filter tools by category">
+      <button class="filter-btn active" data-filter="all" onclick="filterTools('all',this)">All 30</button>
+      <button class="filter-btn" data-filter="sales" onclick="filterTools('sales',this)">Sales</button>
+      <button class="filter-btn" data-filter="content" onclick="filterTools('content',this)">Content</button>
+      <button class="filter-btn" data-filter="hr" onclick="filterTools('hr',this)">HR</button>
+      <button class="filter-btn" data-filter="operations" onclick="filterTools('operations',this)">Operations</button>
+      <button class="filter-btn" data-filter="agency" onclick="filterTools('agency',this)">Agency</button>
+    </div>
+    <div class="tools-grid" id="toolsGrid" role="list">
+      <!-- Tools injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ─── AUTOMATION ────────────────────────────────────────────── -->
+<section class="automation-section" id="automation" aria-label="Automation platform">
+  <div class="container">
+    <div class="automation-inner">
+      <div class="auto-visual" aria-hidden="true">
+        <svg class="flow-lines" viewBox="0 0 400 420">
+          <defs>
+            <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="rgba(99,102,241,0.5)"/>
+            </marker>
+          </defs>
+          <line x1="200" y1="80" x2="200" y2="130" stroke="rgba(99,102,241,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+          <line x1="200" y1="180" x2="100" y2="220" stroke="rgba(139,92,246,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+          <line x1="200" y1="180" x2="300" y2="220" stroke="rgba(6,182,212,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+          <line x1="100" y1="270" x2="200" y2="320" stroke="rgba(34,197,94,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+          <line x1="300" y1="270" x2="200" y2="320" stroke="rgba(34,197,94,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+        </svg>
+        <div class="auto-node" style="top:30px;left:50%;transform:translateX(-50%);min-width:160px">
+          <div class="node-dot nd-blue"></div>Trigger: New Lead
+        </div>
+        <div class="auto-node" style="top:130px;left:50%;transform:translateX(-50%);min-width:160px">
+          <div class="node-dot nd-purple"></div>AI: Qualify Lead
+        </div>
+        <div class="auto-node" style="top:230px;left:10px;min-width:140px">
+          <div class="node-dot nd-cyan"></div>Send Proposal
+        </div>
+        <div class="auto-node" style="top:230px;right:10px;min-width:140px">
+          <div class="node-dot nd-cyan"></div>Add to CRM
+        </div>
+        <div class="auto-node" style="top:330px;left:50%;transform:translateX(-50%);min-width:180px">
+          <div class="node-dot nd-green"></div>✓ Deal Closed
+        </div>
+      </div>
+      <div class="auto-content reveal">
+        <div class="section-badge" style="margin-bottom:20px">
+          <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Automation</span>
+        </div>
+        <h2>Automate your entire<br><span class="gradient-text">sales pipeline</span></h2>
+        <p>Build workflows that run 24/7. From lead capture to deal closure — GeetAI Automation handles every step so your team can focus on strategy.</p>
+        <div class="auto-points">
+          <div class="auto-point">
+            <div class="auto-point-icon fi-blue">⚡</div>
+            <div>
+              <h4>Visual Workflow Builder</h4>
+              <p>Drag-and-drop nodes to build complex automations without code.</p>
+            </div>
+          </div>
+          <div class="auto-point">
+            <div class="auto-point-icon fi-purple">🔗</div>
+            <div>
+              <h4>Connect Any Tool</h4>
+              <p>Integrate with WhatsApp, email, CRM, Slack and 200+ apps via webhooks.</p>
+            </div>
+          </div>
+          <div class="auto-point">
+            <div class="auto-point-icon fi-cyan">🧠</div>
+            <div>
+              <h4>AI Decision Nodes</h4>
+              <p>Let AI qualify leads, route tickets and make decisions inside your workflows.</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary">
+          Explore Automation
+          <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRODUCTS ──────────────────────────────────────────────── -->
+<section class="products-section" id="products" aria-label="Digital product store">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Digital Store</span>
+      </div>
+      <h2>Ready-to-deploy<br><span class="gradient-text">AI business systems</span></h2>
+      <p>Download and deploy complete business systems built with AI. Proven frameworks. Zero build time.</p>
+    </div>
+    <div class="products-grid" role="list">
+      <article class="product-card reveal" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-1" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Ultimate Prompt Pack</h3>
+          <p>500+ battle-tested prompts for sales, marketing, content and operations.</p>
+          <div class="product-meta">
+            <div class="product-price">$24 <span class="price-inr">₹1,999</span> <span>/one-time</span></div>
+            <span class="product-tag">Instant Download</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal reveal-delay-1" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-2" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Automation Pack Pro</h3>
+          <p>Complete n8n + Make automation workflows for lead gen and sales pipelines.</p>
+          <div class="product-meta">
+            <div class="product-price">$60 <span class="price-inr">₹4,999</span> <span>/one-time</span></div>
+            <span class="product-tag">Instant Download</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal reveal-delay-2" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-3" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Agency OS System</h3>
+          <p>Complete agency operating system — proposals, onboarding, delivery, billing.</p>
+          <div class="product-meta">
+            <div class="product-price">$120 <span class="price-inr">₹9,999</span> <span>/one-time</span></div>
+            <span class="product-tag">Best Seller</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal reveal-delay-3" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-4" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Sales Template Pack</h3>
+          <p>Cold emails, follow-up sequences, proposal templates and objection handlers.</p>
+          <div class="product-meta">
+            <div class="product-price">$30 <span class="price-inr">₹2,499</span> <span>/one-time</span></div>
+            <span class="product-tag">Instant Download</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-5" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Claude Code Templates</h3>
+          <p>Ready-to-use Claude Code project templates and agent workflows for developers.</p>
+          <div class="product-meta">
+            <div class="product-price">$42 <span class="price-inr">₹3,499</span> <span>/one-time</span></div>
+            <span class="product-tag">Dev Tools</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal reveal-delay-1" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-6" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Lead Gen System</h3>
+          <p>End-to-end lead generation system with scripts, sequences and qualification frameworks.</p>
+          <div class="product-meta">
+            <div class="product-price">$72 <span class="price-inr">₹5,999</span> <span>/one-time</span></div>
+            <span class="product-tag">High ROI</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal reveal-delay-2" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-7" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>Content Machine Pack</h3>
+          <p>90-day content calendar, caption templates and viral hook formulas for all platforms.</p>
+          <div class="product-meta">
+            <div class="product-price">$18 <span class="price-inr">₹1,499</span> <span>/one-time</span></div>
+            <span class="product-tag">Instant Download</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+      <article class="product-card reveal reveal-delay-3" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
+        <div class="product-cover pc-8" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-info">
+          <h3>SaaS Starter Kit</h3>
+          <p>Complete SaaS business templates — pricing pages, onboarding flows and email sequences.</p>
+          <div class="product-meta">
+            <div class="product-price">$96 <span class="price-inr">₹7,999</span> <span>/one-time</span></div>
+            <span class="product-tag">For Founders</span>
+          </div>
+          <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="event.stopPropagation();window.open('https://aniketgai.gumroad.com','_blank')">Get Now →</button>
+        </div>
+      </article>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <button class="btn btn-ghost btn-lg">View All Products
+        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ───────────────────────────────────────────── -->
+<section class="testimonials-section" aria-label="Customer testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Testimonials</span>
+      </div>
+      <h2>Businesses growing<br><span class="gradient-text">with GeetAI</span></h2>
+    </div>
+    <div class="testimonials-grid" role="list">
+      <article class="testimonial-card reveal" role="listitem">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-quote">"GeetAI Leads generated <strong>80 qualified prospects</strong> in 2 hours. That used to take my team a full week. The ROI in month one was insane."</p>
+        <div class="t-author">
+          <div class="t-avatar ta-1" aria-hidden="true">R</div>
+          <div>
+            <div class="t-name">Rahul Sharma</div>
+            <div class="t-role">Founder, B2B SaaS Startup · Mumbai</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal reveal-delay-1" role="listitem">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-quote">"Writing proposals used to take 3 hours each. <strong>GeetAI Proposals does it in 4 minutes.</strong> My close rate went up 40% because proposals look more professional."</p>
+        <div class="t-author">
+          <div class="t-avatar ta-2" aria-hidden="true">P</div>
+          <div>
+            <div class="t-name">Priya Menon</div>
+            <div class="t-role">Digital Marketing Agency Owner · Bangalore</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal reveal-delay-2" role="listitem">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-quote">"The automation workflows saved my agency <strong>60+ hours per month.</strong> I use GeetAI for client onboarding, content delivery and monthly reporting."</p>
+        <div class="t-author">
+          <div class="t-avatar ta-3" aria-hidden="true">A</div>
+          <div>
+            <div class="t-name">Aakash Patel</div>
+            <div class="t-role">Agency Owner, 12-person team · Ahmedabad</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal" role="listitem">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-quote">"GeetAI Real Estate writes property descriptions, email campaigns and follow-ups. <strong>Listings sell 3× faster</strong> because the content is compelling and fast."</p>
+        <div class="t-author">
+          <div class="t-avatar ta-4" aria-hidden="true">S</div>
+          <div>
+            <div class="t-name">Sneha Kulkarni</div>
+            <div class="t-role">Real Estate Broker · Pune</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal reveal-delay-1" role="listitem">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-quote">"The SEO and Blog tools alone are worth the subscription. I went from <strong>200 to 8,000 monthly visitors</strong> in 4 months without hiring a single writer."</p>
+        <div class="t-author">
+          <div class="t-avatar ta-5" aria-hidden="true">V</div>
+          <div>
+            <div class="t-name">Vikram Joshi</div>
+            <div class="t-role">E-Commerce Founder · Delhi</div>
+          </div>
+        </div>
+      </article>
+      <article class="testimonial-card reveal reveal-delay-2" role="listitem">
+        <div class="t-stars" aria-label="5 stars">★★★★★</div>
+        <p class="t-quote">"GeetAI Interview Coach prepared 50 candidates for our hiring drive. <strong>30% better offer acceptance</strong> because candidates were prepared and confident."</p>
+        <div class="t-author">
+          <div class="t-avatar ta-6" aria-hidden="true">M</div>
+          <div>
+            <div class="t-name">Meera Nair</div>
+            <div class="t-role">HR Director · Hyderabad</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ────────────────────────────────────────────────── -->
+<section class="pricing-section" id="pricing" aria-label="Pricing plans">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Pricing</span>
+      </div>
+      <h2>Invest in growth.<br><span class="gradient-text">Not in 10 tools.</span></h2>
+      <p>One subscription replaces Jasper, Instantly, HubSpot, Calendly and 6 other tools. Save ₹40,000+/month.</p>
+    </div>
+    <div class="pricing-toggle" role="group" aria-label="Billing period">
+      <span class="toggle-label" id="monthly-label">Monthly</span>
+      <button class="toggle-switch" id="billingToggle" aria-label="Toggle annual billing" aria-checked="false" role="switch" onclick="toggleBilling(this)">
+        <div class="toggle-thumb"></div>
+      </button>
+      <span class="toggle-label" id="annual-label">Annual</span>
+      <span class="save-badge">Save 40%</span>
+    </div>
+    <div class="pricing-grid reveal" role="list">
+      <!-- FREE -->
+      <article class="pricing-card" role="listitem">
+        <div class="plan-name">Free</div>
+        <div class="plan-price" data-monthly="$0" data-annual="$0">$0</div>
+        <div class="plan-inr">₹0 / month</div>
+        <div class="plan-desc">Try GeetAI — no card needed</div>
+        <button class="btn btn-ghost plan-cta">Get Started Free</button>
+        <ul class="plan-features" aria-label="Free plan features">
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 3 AI tools access</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 3 outputs/month</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Gmail login only</li>
+          <li class="plan-feature muted"><span class="plan-feature-icon" aria-hidden="true">✗</span> Automations</li>
+          <li class="plan-feature muted"><span class="plan-feature-icon" aria-hidden="true">✗</span> Export features</li>
+        </ul>
+      </article>
+      <!-- STARTER -->
+      <article class="pricing-card" role="listitem">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price" data-monthly="$12" data-annual="$7">$12 <span>/mo</span></div>
+        <div class="plan-inr" data-monthly-inr="₹999/mo" data-annual-inr="₹599/mo">₹999/mo</div>
+        <div class="plan-desc">For solopreneurs & freelancers</div>
+        <button class="btn btn-ghost plan-cta">Start Starter</button>
+        <ul class="plan-features" aria-label="Starter plan features">
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 10 AI tools</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 200 outputs/month</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> PDF & CSV export</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> History & favorites</li>
+          <li class="plan-feature muted"><span class="plan-feature-icon" aria-hidden="true">✗</span> Automations</li>
+        </ul>
+      </article>
+      <!-- PROFESSIONAL (featured) -->
+      <article class="pricing-card featured" role="listitem">
+        <div class="popular-tag" aria-label="Most popular plan">Most Popular</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-price" data-monthly="$29" data-annual="$17">$29 <span>/mo</span></div>
+        <div class="plan-inr" data-monthly-inr="₹2,499/mo" data-annual-inr="₹1,499/mo">₹2,499/mo</div>
+        <div class="plan-desc">For serious business owners</div>
+        <button class="btn btn-primary plan-cta">Start Professional</button>
+        <ul class="plan-features" aria-label="Professional plan features">
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> All 30 AI tools</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 2,000 outputs/month</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 5 automations</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> All export formats</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Priority support</li>
+        </ul>
+      </article>
+      <!-- AGENCY -->
+      <article class="pricing-card" role="listitem">
+        <div class="plan-name">Agency</div>
+        <div class="plan-price" data-monthly="$72" data-annual="$43">$72 <span>/mo</span></div>
+        <div class="plan-inr" data-monthly-inr="₹5,999/mo" data-annual-inr="₹3,599/mo">₹5,999/mo</div>
+        <div class="plan-desc">For agencies & teams</div>
+        <button class="btn btn-ghost plan-cta">Start Agency</button>
+        <ul class="plan-features" aria-label="Agency plan features">
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> All 30 AI tools</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Unlimited outputs</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 25 automations</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 5 team seats</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> White label ready</li>
+        </ul>
+      </article>
+      <!-- ENTERPRISE -->
+      <article class="pricing-card" role="listitem">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">Custom</div>
+        <div class="plan-inr">Contact for pricing</div>
+        <div class="plan-desc">For large organizations</div>
+        <button class="btn btn-cyan plan-cta">Contact Sales</button>
+        <ul class="plan-features" aria-label="Enterprise plan features">
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Everything in Agency</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Unlimited seats</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Custom integrations</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Dedicated success mgr</li>
+          <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> SLA guarantee</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ───────────────────────────────────────────────────── -->
+<section class="faq-section" aria-label="Frequently asked questions">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-badge">
+        <span class="badge"><span class="badge-dot" aria-hidden="true"></span>FAQ</span>
+      </div>
+      <h2>Questions? <span class="gradient-text">Answered.</span></h2>
+    </div>
+    <div class="faq-grid" id="faqGrid">
+      <!-- FAQ injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────────────────────────── -->
+<section class="cta-section" aria-label="Call to action">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2>Your competitors are already<br><span class="gradient-text">using AI. Are you?</span></h2>
+      <p>Start free today. No credit card. No setup. Results from day one.</p>
+      <div class="cta-actions">
+        <button class="btn btn-primary btn-lg">
+          Start Free — No Credit Card
+          <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </button>
+        <button class="btn btn-ghost btn-lg">Book a Demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────── -->
+<footer aria-label="Site footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size:18px">
+          <div class="nav-logo-mark" aria-hidden="true"><img src="android-chrome-512x512.png" alt="GeetAI logo"></div>
+          GeetAI Studio
+        </div>
+        <p>Your AI Operating System For Business Growth. 30 tools. One platform. Infinite possibilities.</p>
+        <div class="footer-social" role="list" aria-label="Social media links">
+          <a href="#" class="social-link" role="listitem" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-link" role="listitem" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-link" role="listitem" aria-label="Instagram">IG</a>
+          <a href="#" class="social-link" role="listitem" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="#tools">All 30 Tools</a>
+        <a href="#tools">Automation</a>
+        <a href="javascript:void(0)">Integrations</a>
+        <a href="javascript:void(0)">API Access</a>
+        <a href="javascript:void(0)">Changelog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener">Prompt Packs</a>
+        <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener">Automation Packs</a>
+        <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener">Business Templates</a>
+        <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener">Agency Systems</a>
+        <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener">SaaS Templates</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="javascript:void(0)">About</a>
+        <a href="javascript:void(0)">Blog</a>
+        <a href="javascript:void(0)">Careers</a>
+        <a href="javascript:void(0)">Affiliates</a>
+        <a href="mailto:aniketgai.studio@gmail.com">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="javascript:void(0)">Help Center</a>
+        <a href="javascript:void(0)">Documentation</a>
+        <a href="javascript:void(0)">Community</a>
+        <a href="javascript:void(0)">Status</a>
+        <a href="#pricing" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'});return false;">Book a Demo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 GeetAI. All rights reserved.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── JS ────────────────────────────────────────────────────── -->
+<script>
+/* ─── PARTICLE CANVAS ─── */
+(function() {
+  const canvas = document.getElementById('canvas-bg');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], lines = [], raf;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  const COLORS = ['rgba(59,130,246,', 'rgba(139,92,246,', 'rgba(6,182,212,', 'rgba(99,102,241,'];
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function createParticle() {
+    return {
+      x: rand(0, W), y: rand(0, H),
+      vx: rand(-0.3, 0.3), vy: rand(-0.3, 0.3),
+      r: rand(1, 2.5),
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      opacity: rand(0.3, 0.8)
+    };
+  }
+
+  function init() {
+    resize();
+    particles = [];
+    const count = Math.min(Math.floor(W * H / 14000), 120);
+    for (let i = 0; i < count; i++) particles.push(createParticle());
+  }
+
+  // Signals travelling along edges
+  let signals = [];
+  function spawnSignal(i, j) {
+    signals.push({ i, j, t: 0, speed: 0.012 + Math.random() * 0.01 });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw connecting lines + spawn signals
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 160) {
+          const alpha = 0.18 * (1 - dist / 160);
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(99,102,241,${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+          // occasionally spawn a signal pulse
+          if (Math.random() < 0.0003) spawnSignal(i, j);
+        }
+      }
+    }
+
+    // Draw signal pulses (travelling dots along edges)
+    signals = signals.filter(s => s.t <= 1);
+    signals.forEach(s => {
+      const pi = particles[s.i], pj = particles[s.j];
+      if (!pi || !pj) return;
+      const sx = pi.x + (pj.x - pi.x) * s.t;
+      const sy = pi.y + (pj.y - pi.y) * s.t;
+      const g2 = ctx.createRadialGradient(sx, sy, 0, sx, sy, 5);
+      g2.addColorStop(0, 'rgba(6,182,212,0.9)');
+      g2.addColorStop(1, 'rgba(6,182,212,0)');
+      ctx.beginPath();
+      ctx.arc(sx, sy, 5, 0, Math.PI * 2);
+      ctx.fillStyle = g2;
+      ctx.fill();
+      s.t += s.speed;
+    });
+
+    // Draw particles (nodes)
+    particles.forEach(p => {
+      // outer glow halo
+      const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
+      halo.addColorStop(0, p.color + '0.12)');
+      halo.addColorStop(1, p.color + '0)');
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
+      ctx.fillStyle = halo;
+      ctx.fill();
+
+      // node core
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + p.opacity + ')';
+      ctx.fill();
+
+      // bright center point
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * 0.4, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + '1)';
+      ctx.fill();
+    });
+  }
+
+  function update() {
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W;
+      if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H;
+      if (p.y > H) p.y = 0;
+    });
+  }
+
+  let lastTime = 0;
+  function loop(ts) {
+    if (ts - lastTime > 16) { update(); draw(); lastTime = ts; }
+    raf = requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', () => { resize(); });
+  init();
+  loop(0);
+
+  // Respect reduced motion
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    cancelAnimationFrame(raf);
+    ctx.clearRect(0, 0, W, H);
+  }
+})();
+
+/* ─── NAV SCROLL ─── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+/* ─── MOBILE MENU ─── */
+const menuBtn = document.getElementById('menuBtn');
+const mobileNav = document.getElementById('mobileNav');
+menuBtn.addEventListener('click', () => {
+  const open = mobileNav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+/* ─── TYPEWRITER ─── */
+const words = ['Business Growth', 'Lead Generation', 'Sales Automation', 'Content Creation', 'Agency Operations', 'Revenue Growth'];
+let wi = 0, ci = 0, deleting = false;
+const tw = document.getElementById('typewriter');
+function type() {
+  const word = words[wi];
+  if (!deleting) {
+    tw.textContent = word.slice(0, ++ci);
+    if (ci === word.length) { deleting = true; setTimeout(type, 2000); return; }
+  } else {
+    tw.textContent = word.slice(0, --ci);
+    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+  }
+  setTimeout(type, deleting ? 60 : 100);
+}
+type();
+
+/* ─── TOOLS DATA — FINAL CURATED 30 ─── */
+const tools = [
+  { slug:'leads', emoji:'🎯', name:'GeetAI Leads', desc:'Lead generation platform', cat:'sales', badge:'Sales' },
+  { slug:'proposals', emoji:'📄', name:'GeetAI Proposals', desc:'Proposal generator', cat:'sales', badge:'Sales' },
+  { slug:'contracts', emoji:'📋', name:'GeetAI Contracts', desc:'Contract generator', cat:'sales', badge:'Legal' },
+  { slug:'quotations', emoji:'💰', name:'GeetAI Quotations', desc:'Quotation builder', cat:'sales', badge:'Sales' },
+  { slug:'content', emoji:'✍️', name:'GeetAI Content', desc:'Content factory', cat:'content', badge:'Content' },
+  { slug:'seo', emoji:'🔍', name:'GeetAI SEO', desc:'SEO generator', cat:'content', badge:'SEO' },
+  { slug:'blog', emoji:'📝', name:'GeetAI Blog', desc:'Blog generator', cat:'content', badge:'Content' },
+  { slug:'social', emoji:'📱', name:'GeetAI Social', desc:'Social media generator', cat:'content', badge:'Social' },
+  { slug:'emails', emoji:'📧', name:'GeetAI Emails', desc:'Email writer', cat:'content', badge:'Email' },
+  { slug:'outreach', emoji:'🚀', name:'GeetAI Outreach', desc:'Cold outreach system', cat:'sales', badge:'Outreach' },
+  { slug:'crm', emoji:'🤝', name:'GeetAI CRM', desc:'CRM assistant', cat:'operations', badge:'CRM' },
+  { slug:'support', emoji:'💬', name:'GeetAI Support', desc:'Customer support AI', cat:'operations', badge:'Support' },
+  { slug:'whatsapp', emoji:'📲', name:'GeetAI WhatsApp', desc:'WhatsApp assistant', cat:'operations', badge:'Messaging' },
+  { slug:'recruit', emoji:'👥', name:'GeetAI Recruit', desc:'Recruitment system', cat:'hr', badge:'HR' },
+  { slug:'resume', emoji:'📑', name:'GeetAI Resume', desc:'Resume & career builder', cat:'hr', badge:'HR' },
+  { slug:'course', emoji:'🎓', name:'GeetAI Course', desc:'Course generator', cat:'content', badge:'EdTech' },
+  { slug:'local', emoji:'🏪', name:'GeetAI Local', desc:'Local business AI', cat:'operations', badge:'Local' },
+  { slug:'real-estate', emoji:'🏠', name:'GeetAI Real Estate', desc:'Real estate AI', cat:'operations', badge:'Real Estate' },
+  { slug:'automation', emoji:'⚡', name:'GeetAI Automation', desc:'Workflow builder', cat:'operations', badge:'Automation' },
+  { slug:'marketplace', emoji:'🛍️', name:'GeetAI Marketplace', desc:'Automation marketplace', cat:'operations', badge:'Store' },
+  { slug:'brand', emoji:'✨', name:'GeetAI Brand', desc:'Personal brand system', cat:'agency', badge:'Branding' },
+  { slug:'agencyos', emoji:'🏢', name:'GeetAI AgencyOS', desc:'Agency operating system', cat:'agency', badge:'Agency' },
+  { slug:'reels', emoji:'🎬', name:'GeetAI Reels Script', desc:'Viral short-video scripts', cat:'content', badge:'Video' },
+  { slug:'adcopy', emoji:'📢', name:'GeetAI AdCopy', desc:'High-converting ad copy', cat:'sales', badge:'Ads' },
+  { slug:'reputation', emoji:'⭐', name:'GeetAI Reputation', desc:'Review & reputation manager', cat:'operations', badge:'Reputation' },
+  { slug:'voice', emoji:'🎙️', name:'GeetAI VoiceScript', desc:'Podcast & voiceover scripts', cat:'content', badge:'Audio' },
+  { slug:'freelance-pitch', emoji:'💼', name:'GeetAI Freelance Pitch', desc:'Winning pitch generator', cat:'sales', badge:'Freelance' },
+  { slug:'listing', emoji:'🛒', name:'GeetAI Listing', desc:'E-commerce listing optimizer', cat:'sales', badge:'E-com' },
+  { slug:'persona', emoji:'🔬', name:'GeetAI Persona', desc:'Customer research & personas', cat:'content', badge:'Research' },
+  { slug:'minutes', emoji:'🗒️', name:'GeetAI Minutes', desc:'Meeting summaries & action items', cat:'operations', badge:'Productivity' },
+];
+
+function renderTools(filter) {
+  const grid = document.getElementById('toolsGrid');
+  const filtered = filter === 'all' ? tools : tools.filter(t => t.cat === filter);
+  grid.innerHTML = filtered.map(t => `
+    <a href="tools/${t.slug}.html" class="tool-card reveal" role="listitem" tabindex="0" aria-label="${t.name}: ${t.desc}">
+      <span class="tool-emoji" aria-hidden="true">${t.emoji}</span>
+      <div class="tool-name">${t.name}</div>
+      <div class="tool-desc">${t.desc}</div>
+      <span class="tool-badge">${t.badge}</span>
+    </a>
+  `).join('');
+  // Re-observe new cards
+  grid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
+function filterTools(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTools(filter);
+}
+
+/* ─── FAQ ─── */
+const faqs = [
+  { q: 'What is GeetAI?', a: 'GeetAI is an AI Business Operating System that gives you 30 AI-powered tools in one platform — from lead generation and proposals to content creation and workflow automation.' },
+  { q: 'Can I use GeetAI for free?', a: 'Yes. The Free plan gives you access to 5 tools and 20 outputs per month — no credit card required. Upgrade when you need more.' },
+  { q: 'How is GeetAI different from ChatGPT?', a: 'ChatGPT is a general AI assistant. GeetAI is purpose-built for business outcomes — each tool has specific templates, structured outputs and business-focused workflows that save you 10× more time.' },
+  { q: 'Can I export my outputs?', a: 'Yes. All outputs can be exported as PDF, CSV, Excel, Word and JSON. Copy to clipboard is also available on every output.' },
+  { q: 'Does GeetAI work for agencies?', a: 'Absolutely. The Agency plan includes team seats, client workspaces, white label options and unlimited outputs. GeetAI AgencyOS is specifically built for agency operations.' },
+  { q: 'What languages does GeetAI support?', a: 'GeetAI supports English, Hindi, Marathi and 50+ other languages. You can generate outputs in any language by specifying it in your input.' },
+  { q: 'Is my data secure?', a: 'Yes. GeetAI uses enterprise-grade encryption, role-based access control, rate limiting and audit logs. Your data is never used to train AI models.' },
+  { q: 'Can I cancel anytime?', a: 'Yes. Cancel from your billing dashboard at any time. No questions asked, no cancellation fees. Your access continues until the end of your billing period.' },
+];
+
+document.getElementById('faqGrid').innerHTML = faqs.map((f, i) => `
+  <div class="faq-item reveal ${i % 2 === 0 ? '' : 'reveal-delay-1'}">
+    <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="faq-a-${i}">
+      ${f.q}
+      <div class="faq-icon" aria-hidden="true">+</div>
+    </button>
+    <div class="faq-a" id="faq-a-${i}" role="region">
+      <div class="faq-a-inner">${f.a}</div>
+    </div>
+  </div>
+`).join('');
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open);
+}
+
+/* ─── PRICING TOGGLE ─── */
+const monthly = { '₹0':'₹0','₹999':'₹599','₹2,499':'₹1,499','₹5,999':'₹3,599' };
+let isAnnual = false;
+function toggleBilling(btn) {
+  isAnnual = !isAnnual;
+  btn.classList.toggle('annual', isAnnual);
+  btn.setAttribute('aria-checked', isAnnual);
+  document.querySelectorAll('.plan-price').forEach(el => {
+    const m = el.dataset.monthly, a = el.dataset.annual;
+    if (!m) return;
+    const val = isAnnual && a ? a : m;
+    const noSuffix = val === '$0' || val === 'Custom';
+    el.innerHTML = val + (noSuffix ? '' : ' <span>/mo</span>');
+  });
+  document.querySelectorAll('.plan-inr').forEach(el => {
+    const m = el.dataset.monthlyInr, a = el.dataset.annualInr;
+    if (m) el.textContent = (isAnnual && a) ? a : m;
+  });
+}
+
+/* ─── SCROLL REVEAL ─── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+/* ─── DYNAMIC MOTION: lightweight 3D tilt + scroll-linked rotation ───
+   No external libs. GPU-only transforms. rAF-throttled. Respects
+   prefers-reduced-motion (handled via CSS @media query above). ─── */
+(function initDynamicMotion(){
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  // Hero glow — subtle parallax following cursor + scroll (rAF-throttled, GPU transform only)
+  const glow = document.querySelector('.hero-glow');
+  if (glow) {
+    let rafGlow = null;
+    window.addEventListener('mousemove', (e) => {
+      if (rafGlow) return;
+      rafGlow = requestAnimationFrame(() => {
+        const gx = (e.clientX / window.innerWidth - 0.5) * 60;
+        const gy = (e.clientY / window.innerHeight - 0.5) * 40 + Math.min(window.scrollY * 0.15, 80);
+        glow.style.setProperty('--gx', gx.toFixed(1) + 'px');
+        glow.style.setProperty('--gy', gy.toFixed(1) + 'px');
+        rafGlow = null;
+      });
+    }, { passive:true });
+  }
+
+  // Tag cards for scroll-linked rotation (CSS-driven, zero JS cost when supported)
+  document.querySelectorAll('.tool-card, .glass, .glass-strong').forEach(el => {
+    el.classList.add('scroll-spin');
+  });
+
+  // Lightweight 3D tilt-on-hover for tool cards — mousemove → CSS custom props
+  let raf = null;
+  function attachTilt(el) {
+    el.classList.add('tilt-3d');
+    el.addEventListener('mousemove', (e) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;   // -0.5..0.5
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty('--rx', (px * 10).toFixed(2) + 'deg');
+        el.style.setProperty('--ry', (-py * 10).toFixed(2) + 'deg');
+        el.style.setProperty('--ty', '-4px');
+        el.style.setProperty('--ts', '1.02');
+        raf = null;
+      });
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.setProperty('--rx', '0deg');
+      el.style.setProperty('--ry', '0deg');
+      el.style.setProperty('--ty', '0px');
+      el.style.setProperty('--ts', '1');
+    });
+  }
+  document.querySelectorAll('.tool-card, .product-card').forEach(attachTilt);
+})();
+
+/* ─── INIT ─── */
+renderTools('all');
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+// Re-run tilt attach for dynamically rendered tool cards (renderTools runs after observer setup)
+(function reattachForDynamicCards(){
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+  let raf2 = null;
+  document.querySelectorAll('.tool-card:not(.tilt-3d)').forEach(el => {
+    el.classList.add('tilt-3d', 'scroll-spin');
+    el.addEventListener('mousemove', (e) => {
+      if (raf2) return;
+      raf2 = requestAnimationFrame(() => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty('--rx', (px * 10).toFixed(2) + 'deg');
+        el.style.setProperty('--ry', (-py * 10).toFixed(2) + 'deg');
+        el.style.setProperty('--ty', '-4px');
+        el.style.setProperty('--ts', '1.02');
+        raf2 = null;
+      });
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.setProperty('--rx', '0deg');
+      el.style.setProperty('--ry', '0deg');
+      el.style.setProperty('--ty', '0px');
+      el.style.setProperty('--ts', '1');
+    });
+  });
+})();
+</script>
+</body>
+</html>

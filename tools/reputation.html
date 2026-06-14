@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GeetAI Reputation — GeetAI Studio</title>
+<meta name="description" content="Turn reviews into revenue — respond like a pro every time">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geetaistudio.com/tools/reputation.html">
+<meta property="og:title" content="GeetAI Reputation — GeetAI Studio">
+<meta property="og:description" content="Turn reviews into revenue — respond like a pro every time">
+<meta property="og:image" content="https://geetaistudio.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GeetAI Reputation">
+<meta name="twitter:description" content="Turn reviews into revenue — respond like a pro every time">
+<meta name="twitter:image" content="https://geetaistudio.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#03030a; --bg2:#07071a; --surface:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.08); --blue2:#60a5fa; --indigo:#6366f1;
+  --purple:#8b5cf6; --cyan2:#22d3ee; --white:#f8fafc; --muted:#94a3b8; --accent:#a78bfa;
+  --r-md:12px; --r-lg:16px; --r-xl:24px;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--white); line-height:1.6; }
+a { color:inherit; text-decoration:none; }
+.container { max-width:900px; margin:0 auto; padding:0 24px; }
+.nav { padding:20px 0; border-bottom:1px solid var(--border); }
+.nav-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+.logo { font-size:20px; font-weight:800; }
+.logo span { background:linear-gradient(135deg,#60a5fa,#a78bfa,#22d3ee); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.nav-back { font-size:14px; color:var(--muted); }
+.nav-back:hover { color:var(--blue2); }
+.hero { padding:64px 0 48px; text-align:center; }
+.tool-emoji { font-size:64px; margin-bottom:16px; display:block; }
+.badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); border-radius:100px; font-size:13px; font-weight:600; color:var(--accent); margin-bottom:20px; }
+h1 { font-size:clamp(28px,5vw,42px); font-weight:800; line-height:1.15; margin-bottom:16px; }
+.gradient-text { background:linear-gradient(135deg,#60a5fa,#a78bfa,#22d3ee); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.subtitle { font-size:18px; color:var(--muted); max-width:640px; margin:0 auto 32px; }
+.features { display:grid; gap:12px; margin:40px 0; text-align:left; }
+.feature { display:flex; gap:12px; align-items:flex-start; padding:16px; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-md); font-size:15px; }
+.feature::before { content:'✓'; color:var(--cyan2); font-weight:700; flex-shrink:0; }
+.body-copy { font-size:16px; color:var(--muted); line-height:1.8; margin-bottom:40px; }
+.body-copy p { margin-bottom:16px; }
+.cta-box { background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(6,182,212,0.1)); border:1px solid rgba(99,102,241,0.3); border-radius:var(--r-xl); padding:40px; text-align:center; margin:48px 0; }
+.cta-box h2 { font-size:24px; margin-bottom:12px; }
+.cta-box p { color:var(--muted); margin-bottom:24px; }
+.price { font-size:28px; font-weight:800; color:var(--blue2); margin-bottom:8px; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:var(--r-md); font-size:15px; font-weight:600; border:none; cursor:pointer; transition:all 0.2s; }
+.btn-primary { background:linear-gradient(135deg,var(--indigo),var(--purple)); color:white; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(99,102,241,0.4); }
+.btn-ghost { background:transparent; border:1px solid var(--border); color:var(--white); margin-left:12px; }
+.btn-ghost:hover { border-color:var(--indigo); }
+.footer { padding:40px 0; border-top:1px solid var(--border); text-align:center; color:var(--muted); font-size:14px; }
+.related { margin:48px 0; }
+.related h3 { font-size:18px; margin-bottom:16px; }
+.related-links { display:flex; flex-wrap:wrap; gap:8px; }
+.related-links a { padding:8px 16px; background:var(--surface); border:1px solid var(--border); border-radius:100px; font-size:13px; }
+.related-links a:hover { border-color:var(--indigo); color:var(--blue2); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">Geet<span>AI</span></a>
+    <a href="../index.html#tools" class="nav-back">← All 30 Tools</a>
+  </div>
+</nav>
+<main class="container">
+  <section class="hero">
+    <span class="tool-emoji" aria-hidden="true">⭐</span>
+    <span class="badge">Reputation</span>
+    <h1>GeetAI Reputation</h1>
+    <p class="subtitle">Turn reviews into revenue — respond like a pro every time</p>
+  </section>
+  <div class="features">
+    <div class="feature">80 review response templates</div>
+    <div class="feature">Review request scripts (email & SMS)</div>
+    <div class="feature">Negative review de-escalation guides</div>
+    <div class="feature">Reputation monitoring checklist</div>
+  </div>
+  <div class="body-copy">
+    <p>Your Google rating is your storefront. GeetAI Reputation includes eighty response templates for five-star thank-yous, three-star recoveries, and one-star fire drills .  plus review request scripts that actually get customers to click. Local businesses, e-commerce brands, and SaaS companies use this to protect and improve their public perception without hiring a PR firm.</p>
+    <p>Templates handle the emotional intelligence of public replies: acknowledging frustration, offering resolution paths, and turning critics into advocates when possible. Includes monitoring checklists and escalation workflows for reviews that need human intervention. Reputation management isn't optional anymore .  systematize it.</p>
+  </div>
+  <div class="cta-box">
+    <div class="price">₹1,499</div>
+    <h2>Get the GeetAI Reputation Vault</h2>
+    <p>Instant download · Use with ChatGPT, Claude, or GeetAI Studio</p>
+    <a href="https://aniketgai.gumroad.com" class="btn btn-primary" target="_blank" rel="noopener">Buy on Gumroad</a>
+    <a href="../index.html#pricing" class="btn btn-ghost">View Platform Plans</a>
+  </div>
+  <div class="related">
+    <h3>Explore more tools</h3>
+    <div class="related-links">
+      <a href="../index.html#tools">All 30 Tools</a>
+      <a href="agencyos.html">AgencyOS</a>
+      <a href="leads.html">Leads</a>
+      <a href="content.html">Content</a>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+  <p>© 2025 GeetAI Studio · <a href="../index.html">Home</a> · <a href="mailto:aniketgai.studio@gmail.com">Contact</a></p>
+</footer>
+</body>
+</html>

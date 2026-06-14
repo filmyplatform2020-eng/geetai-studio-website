@@ -1,0 +1,6 @@
+.DS_Store
+*.log
+.env
+credentials.json
+node_modules/
+.wrangler/
