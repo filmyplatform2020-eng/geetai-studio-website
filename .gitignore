@@ -4,3 +4,7 @@
 credentials.json
 node_modules/
 .wrangler/
+delivery/
+delivery_zips/
+build.log
+__pycache__/

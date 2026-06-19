@@ -36,19 +36,19 @@
   --surface:   rgba(255,255,255,0.04);
   --surface2:  rgba(255,255,255,0.07);
   --border:    rgba(255,255,255,0.08);
-  --border2:   rgba(99,102,241,0.3);
-  --blue:      #3b82f6;
-  --blue2:     #60a5fa;
-  --indigo:    #6366f1;
-  --purple:    #8b5cf6;
+  --border2:   rgba(47,143,255,0.3);
+  --blue:      #2f8fff;
+  --blue2:     #5cb3ff;
+  --indigo:    #2f8fff;
+  --purple:    #38bdf8;
   --cyan:      #06b6d4;
-  --cyan2:     #22d3ee;
+  --cyan2:     #38d9f0;
   --white:     #f8fafc;
   --muted:     #94a3b8;
   --muted2:    #64748b;
-  --accent:    #a78bfa;
-  --glow-blue: rgba(59,130,246,0.15);
-  --glow-purple: rgba(139,92,246,0.15);
+  --accent:    #7dd3fc;
+  --glow-blue: rgba(47,143,255,0.15);
+  --glow-purple: rgba(56,189,248,0.15);
   --glow-cyan: rgba(6,182,212,0.12);
 
   --r-sm: 8px;
@@ -105,13 +105,13 @@ ul { list-style:none; }
 }
 
 .gradient-text {
-  background:linear-gradient(135deg,#60a5fa 0%,#a78bfa 50%,#22d3ee 100%);
+  background:linear-gradient(135deg,#5cb3ff 0%,#5cb3ff 50%,#22d3ee 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
 }
 .gradient-text-warm {
-  background:linear-gradient(135deg,#f472b6 0%,#a78bfa 50%,#60a5fa 100%);
+  background:linear-gradient(135deg,#5cb3ff 0%,#5cb3ff 50%,#5cb3ff 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -120,8 +120,8 @@ ul { list-style:none; }
 .badge {
   display:inline-flex; align-items:center; gap:6px;
   padding:6px 14px;
-  background:rgba(99,102,241,0.15);
-  border:1px solid rgba(99,102,241,0.3);
+  background:rgba(47,143,255,0.15);
+  border:1px solid rgba(47,143,255,0.3);
   border-radius:100px;
   font-size:13px; font-weight:600; color:var(--accent);
   letter-spacing:0.02em;
@@ -151,11 +151,11 @@ ul { list-style:none; }
 .btn-primary {
   background:linear-gradient(135deg,var(--indigo),var(--purple));
   color:#fff;
-  box-shadow:0 0 0 0 rgba(99,102,241,0);
+  box-shadow:0 0 0 0 rgba(47,143,255,0);
 }
 .btn-primary:hover {
   transform:translateY(-1px);
-  box-shadow:0 8px 32px rgba(99,102,241,0.4);
+  box-shadow:0 8px 32px rgba(47,143,255,0.4);
 }
 .btn-primary:active { transform:translateY(0); }
 
@@ -208,13 +208,14 @@ nav.scrolled {
   font-size:20px; font-weight:800; letter-spacing:-0.02em;
 }
 .nav-logo-mark {
-  width:36px; height:36px;
+  width:38px; height:38px;
   border-radius:10px;
   display:flex; align-items:center; justify-content:center;
   overflow:hidden;
-  box-shadow:0 0 20px rgba(99,102,241,0.5);
+  background:linear-gradient(135deg,rgba(47,143,255,0.18),rgba(124,58,237,0.18));
+  box-shadow:0 0 20px rgba(47,143,255,0.5);
 }
-.nav-logo-mark img { width:36px; height:36px; object-fit:cover; filter:brightness(0) invert(1) drop-shadow(0 0 6px rgba(99,102,241,0.9)); }
+.nav-logo-mark img { width:38px; height:38px; object-fit:contain; transform:scale(1.5); filter:drop-shadow(0 0 6px rgba(47,143,255,0.6)); }
 .nav-links {
   display:flex; align-items:center; gap:4px;
 }
@@ -255,7 +256,7 @@ nav.scrolled {
   position:absolute;
   top:20%; left:50%;
   width:900px; height:600px;
-  background:radial-gradient(ellipse,rgba(99,102,241,0.12) 0%,rgba(139,92,246,0.06) 40%,transparent 70%);
+  background:radial-gradient(ellipse,rgba(47,143,255,0.12) 0%,rgba(56,189,248,0.06) 40%,transparent 70%);
   pointer-events:none;
   transform:translate(calc(-50% + var(--gx,0px)), var(--gy,0px));
   transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);
@@ -272,11 +273,12 @@ nav.scrolled {
   display:flex; justify-content:center;
 }
 .hero h1 {
-  font-size:clamp(42px,6vw,80px);
+  font-size:clamp(32px,5.4vw,62px);
   font-weight:800;
-  line-height:1.08;
+  line-height:1.1;
   letter-spacing:-0.03em;
   margin-bottom:24px;
+  overflow-wrap:break-word;
 }
 .hero-sub {
   font-size:clamp(17px,2vw,20px);
@@ -299,19 +301,42 @@ nav.scrolled {
 }
 .hero-trust-icon { color:var(--cyan2); font-size:14px; }
 
-/* Typewriter */
-.typewriter-wrap {
-  display:inline;
+/* Galaxy logo — subtle rotating orbit rings behind hero */
+#galaxy-logo {
+  position:fixed;
+  top:50%; left:50%;
+  width:min(820px,92vw); height:min(820px,92vw);
+  transform:translate(-50%,-50%) rotate(0deg);
+  pointer-events:none; z-index:0;
+  opacity:0.45;
+  filter:drop-shadow(0 0 40px rgba(47,143,255,0.35));
+  will-change:transform;
+  transform-origin:center center;
 }
-#typewriter {
+
+/* Word-swap (smooth fade + slide) — inline-grid auto-sizes to widest word so it never clips */
+.word-swap-wrap {
+  display:inline-grid;
+  vertical-align:bottom;
+  text-align:left;
+  overflow:visible;
+}
+.word-swap-item {
+  grid-area:1 / 1;
   color:transparent;
-  background:linear-gradient(135deg,#60a5fa,#a78bfa,#22d3ee);
+  background:linear-gradient(135deg,#60a5fa 0%,#5cb3ff 50%,#22d3ee 100%);
   -webkit-background-clip:text; background-clip:text;
-  border-right:3px solid var(--accent);
-  padding-right:4px;
-  animation:blink 1s step-end infinite;
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.55s cubic-bezier(.4,0,.2,1), transform 0.55s cubic-bezier(.4,0,.2,1);
+  white-space:nowrap;
 }
-@keyframes blink { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+.word-swap-item.active {
+  opacity:1; transform:translateY(0);
+}
+.word-swap-item.exit {
+  opacity:0; transform:translateY(-28px);
+}
 
 /* Hero stats */
 .hero-stats {
@@ -370,37 +395,59 @@ section { position:relative; z-index:1; }
 .features-section { padding:100px 0; }
 .features-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1px; background:var(--border);
-  border-radius:var(--r-2xl); overflow:hidden;
-  border:1px solid var(--border);
+  gap:18px;
 }
 .feature-card {
-  background:var(--bg2);
-  padding:40px;
-  transition:background 0.2s;
+  background:transparent;
+  padding:0;
   position:relative; overflow:hidden;
+  border-radius:18px;
+  cursor:pointer;
+  transition:box-shadow 0.35s var(--ease);
 }
-.feature-card::before {
-  content:'';
-  position:absolute; inset:0;
-  background:linear-gradient(135deg,var(--glow-blue),transparent);
-  opacity:0; transition:opacity 0.3s;
+.feature-card img.fc-img {
+  width:100%; height:auto; display:block;
+  border-radius:18px;
+  transition:transform 0.4s var(--ease), filter 0.4s var(--ease);
 }
-.feature-card:hover { background:var(--bg3); }
-.feature-card:hover::before { opacity:1; }
-.feature-icon {
-  width:52px; height:52px; border-radius:var(--r-md);
+.feature-card:hover { box-shadow:0 0 32px rgba(47,143,255,0.28); }
+.feature-card:hover img.fc-img { transform:scale(1.04); filter:brightness(1.18); }
+.feature-card .fc-arrow {
+  position:absolute; bottom:12px; right:14px;
+  background:rgba(47,143,255,0.22); border:1px solid rgba(47,143,255,0.45);
+  border-radius:50%; width:34px; height:34px;
   display:flex; align-items:center; justify-content:center;
-  margin-bottom:20px; font-size:24px;
+  font-size:15px; color:#7dd3fc;
+  opacity:0; transform:translateY(8px);
+  transition:opacity 0.28s, transform 0.28s;
+  pointer-events:none;
 }
-.fi-blue { background:rgba(59,130,246,0.15); }
-.fi-purple { background:rgba(139,92,246,0.15); }
-.fi-cyan { background:rgba(6,182,212,0.15); }
-.fi-pink { background:rgba(236,72,153,0.15); }
-.fi-green { background:rgba(34,197,94,0.15); }
-.fi-orange { background:rgba(249,115,22,0.15); }
-.feature-card h3 { font-size:18px; font-weight:700; margin-bottom:10px; }
-.feature-card p { font-size:14px; color:var(--muted); line-height:1.6; }
+.feature-card:hover .fc-arrow { opacity:1; transform:translateY(0); }
+
+/* ─── GLASS FLOAT ────────────────────────────────────────────── */
+.glass-float-section { padding:80px 0 60px; overflow:hidden; }
+.glass-float-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:56px 72px;
+  max-width:1140px;
+  margin:0 auto;
+}
+.gf-card {
+  will-change:transform;
+  transition:transform 0.08s linear;
+}
+.gf-card:nth-child(odd)  { margin-top:0; }
+.gf-card:nth-child(even) { margin-top:72px; }
+.gf-card img {
+  width:100%; height:auto; display:block;
+  filter:drop-shadow(0 20px 48px rgba(47,143,255,0.30));
+  transition:filter 0.35s, transform 0.35s;
+}
+.gf-card:hover img {
+  filter:drop-shadow(0 28px 64px rgba(47,143,255,0.55)) brightness(1.12);
+  transform:scale(1.04) translateY(-6px);
+}
 
 /* ─── TOOLS ──────────────────────────────────────────────────── */
 .tools-section { padding:100px 0; }
@@ -418,15 +465,15 @@ section { position:relative; z-index:1; }
   background:var(--indigo); border-color:var(--indigo); color:#fff;
 }
 .tools-grid {
-  display:grid; grid-template-columns:repeat(5,1fr);
-  gap:16px;
+  display:grid; grid-template-columns:repeat(6,1fr);
+  gap:12px;
 }
 .tool-card {
   display:block;
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:var(--r-lg);
-  padding:24px 20px;
+  padding:18px 12px;
   cursor:pointer;
   transition:transform 0.4s var(--ease), background 0.25s, border-color 0.25s, box-shadow 0.4s;
   position:relative; overflow:hidden;
@@ -434,7 +481,7 @@ section { position:relative; z-index:1; }
   will-change:transform;
 }
 .tool-card:hover {
-  box-shadow:0 20px 60px -20px rgba(99,102,241,0.35);
+  box-shadow:0 20px 60px -20px rgba(47,143,255,0.35);
 }
 /* 3D tilt — JS sets --rx/--ry on mousemove, lightweight, GPU-only */
 .tilt-3d {
@@ -464,26 +511,77 @@ section { position:relative; z-index:1; }
 }
 .tool-card:hover {
   background:var(--surface2);
-  border-color:rgba(99,102,241,0.4);
+  border-color:rgba(47,143,255,0.4);
   transform:translateY(-4px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(99,102,241,0.2);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(47,143,255,0.2);
 }
 .tool-card:hover::after { transform:scaleX(1); }
-.tool-emoji {
-  font-size:28px; margin-bottom:12px; display:block;
+.tool-card { text-align:center; }
+.tool-icon-img {
+  display:block; margin:0 auto 14px;
+  width:44px; height:44px; object-fit:contain;
+  filter:drop-shadow(0 6px 18px rgba(56,140,255,0.45));
   transform:translateZ(30px) scale(1);
-  transition:transform 0.4s var(--ease);
+  transition:transform 0.4s var(--ease), filter 0.4s var(--ease);
 }
-.tool-card:hover .tool-emoji { transform:translateZ(50px) scale(1.18) rotate(-6deg); }
-@media (prefers-reduced-motion: reduce){ .tool-emoji, .tool-card:hover .tool-emoji { transform:none !important; } }
-.tool-name { font-size:14px; font-weight:700; margin-bottom:4px; }
+.tool-card:hover .tool-icon-img { transform:translateZ(50px) scale(1.1); filter:drop-shadow(0 10px 26px rgba(56,140,255,0.7)); }
+.tool-emoji { font-size:48px; line-height:1; margin-bottom:12px; }
+@media (prefers-reduced-motion: reduce){ .tool-icon-img, .tool-card:hover .tool-icon-img { transform:none !important; } }
+.tool-name { font-size:15px; font-weight:700; margin-bottom:4px; }
 .tool-desc { font-size:12px; color:var(--muted); line-height:1.5; }
 .tool-badge {
   display:inline-block; margin-top:10px;
   padding:3px 8px; border-radius:100px;
   font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
-  background:rgba(99,102,241,0.2); color:var(--accent);
+  background:rgba(47,143,255,0.2); color:var(--accent);
 }
+.pm-overlay { position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; background:rgba(2,3,12,0.78); backdrop-filter:blur(6px); padding:20px; }
+.pm-overlay.open { display:flex; }
+.pm-box { width:100%; max-width:680px; max-height:85vh; display:flex; flex-direction:column; background:var(--bg2); border:1px solid var(--border2); border-radius:18px; box-shadow:0 30px 90px -20px rgba(47,143,255,0.5); overflow:hidden; }
+.pm-head { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid var(--border); }
+.pm-head h3 { font-size:18px; font-weight:800; }
+.pm-count { color:var(--accent); font-weight:600; font-size:14px; }
+.pm-close { background:rgba(255,255,255,0.06); border:none; color:var(--muted); width:32px; height:32px; border-radius:8px; cursor:pointer; font-size:15px; }
+.pm-close:hover { background:rgba(255,255,255,0.12); color:#fff; }
+.pm-search-wrap { display:flex; align-items:center; gap:10px; margin:14px 22px 4px; padding:10px 14px; border-radius:12px; background:rgba(47,143,255,0.07); border:1px solid var(--border2); color:var(--blue2); }
+.pm-search-wrap input { flex:1; background:transparent; border:none; outline:none; color:#fff; font-size:14px; font-family:inherit; }
+.pm-search-wrap input::placeholder { color:var(--muted2); }
+.pm-tabs { display:flex; flex-wrap:wrap; gap:8px; padding:10px 22px 6px; }
+.pm-tab { padding:6px 14px; border-radius:100px; border:1px solid var(--border2); background:rgba(47,143,255,0.06); color:var(--blue2); font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+.pm-tab:hover { color:#fff; background:rgba(47,143,255,0.15); }
+.pm-tab.active { background:linear-gradient(135deg,#2f8fff,#38bdf8); color:#fff; border-color:transparent; box-shadow:0 4px 14px -4px rgba(47,143,255,0.7); }
+.pm-list { overflow-y:auto; padding:10px 16px 16px; display:flex; flex-direction:column; gap:8px; }
+.pm-row { display:flex; align-items:center; gap:14px; width:100%; padding:13px 16px; border-radius:12px;
+  background:linear-gradient(135deg,rgba(47,143,255,0.08),rgba(56,189,248,0.04));
+  border:1px solid rgba(47,143,255,0.18); backdrop-filter:blur(8px);
+  cursor:pointer; transition:background 0.2s, border-color 0.2s, transform 0.2s; text-decoration:none; color:var(--white); }
+.pm-row:hover { background:linear-gradient(135deg,rgba(47,143,255,0.22),rgba(47,143,255,0.12)); border-color:rgba(47,143,255,0.5); transform:translateX(3px); }
+.pm-num { width:30px; font-size:13px; font-weight:800; color:var(--blue2); flex-shrink:0; }
+.pm-name { flex:1; font-size:14.5px; font-weight:700; }
+.pm-cat { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--blue2); background:rgba(47,143,255,0.14); padding:3px 9px; border-radius:100px; }
+.pm-price { font-size:15px; font-weight:800; color:#fff; min-width:62px; text-align:right; }
+.pm-empty { text-align:center; color:var(--muted); padding:30px; }
+.pm-foot { display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding:16px 22px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); }
+.pm-bundle { padding:7px 14px; border-radius:100px; background:rgba(47,143,255,0.14); color:var(--blue2); font-weight:700; font-size:13px; text-decoration:none; }
+.pm-bundle.hot { background:linear-gradient(135deg,var(--indigo),var(--purple)); color:#fff; }
+.pm-bundle:hover { filter:brightness(1.15); }
+.mission-band { padding:70px 0 30px; text-align:center; }
+.mission-inner { max-width:820px; margin:0 auto; }
+.mission-h { font-size:clamp(24px,3.4vw,40px); font-weight:800; line-height:1.25; margin-bottom:18px; }
+.mission-p { font-size:clamp(15px,1.6vw,18px); color:var(--muted); line-height:1.7; max-width:680px; margin:0 auto; }
+.lang-toggle {
+  display:flex; align-items:center; gap:2px;
+  padding:3px; border-radius:100px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+}
+.lang-btn {
+  width:30px; height:30px; border-radius:50%;
+  border:none; cursor:pointer; font-size:14px; font-weight:700;
+  background:transparent; color:var(--muted);
+  transition:all 0.25s var(--ease);
+}
+.lang-btn.active { background:linear-gradient(135deg,#2f8fff,#38bdf8); color:#fff; box-shadow:0 4px 12px -3px rgba(47,143,255,0.7); }
+@media(max-width:640px){ .lang-toggle{ margin-right:4px; } }
 
 /* ─── AUTOMATION ─────────────────────────────────────────────── */
 .automation-section { padding:100px 0; }
@@ -559,7 +657,7 @@ section { position:relative; z-index:1; }
   will-change:transform;
 }
 .product-card:hover {
-  border-color:rgba(99,102,241,0.4);
+  border-color:rgba(47,143,255,0.4);
   transform:translateY(-6px) scale(1.015);
   box-shadow:0 24px 70px -10px rgba(99,102,246,0.4), 0 20px 60px rgba(0,0,0,0.5);
 }
@@ -572,14 +670,19 @@ section { position:relative; z-index:1; }
 .product-cover img.pc-logo {
   width:72px; height:72px; object-fit:contain;
   position:relative; z-index:2;
-  filter:drop-shadow(0 0 18px rgba(99,102,241,0.7)) drop-shadow(0 0 6px rgba(6,182,212,0.5));
+  filter:drop-shadow(0 0 18px rgba(47,143,255,0.7)) drop-shadow(0 0 6px rgba(6,182,212,0.5));
 }
-.pc-1 { background:linear-gradient(135deg,#1e1b4b,#312e81); }
+.product-cover img.pc-bg {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; z-index:0;
+}
+.product-cover:has(img.pc-bg) img.pc-logo { width:48px; height:48px; opacity:0.95; position:absolute; bottom:10px; right:10px; }
+.pc-1 { background:linear-gradient(135deg,#0d1f3d,#16306b); }
 .pc-2 { background:linear-gradient(135deg,#0c4a6e,#0369a1); }
-.pc-3 { background:linear-gradient(135deg,#4c1d95,#6d28d9); }
+.pc-3 { background:linear-gradient(135deg,#1e3a6e,#2f6fdf); }
 .pc-4 { background:linear-gradient(135deg,#164e63,#0e7490); }
 .pc-5 { background:linear-gradient(135deg,#1e3a5f,#1d4ed8); }
-.pc-6 { background:linear-gradient(135deg,#2d1b69,#7c3aed); }
+.pc-6 { background:linear-gradient(135deg,#0d2a55,#2f8fff); }
 .pc-7 { background:linear-gradient(135deg,#0f4c75,#1b6ca8); }
 .pc-8 { background:linear-gradient(135deg,#1a1a2e,#16213e); }
 .product-cover::before {
@@ -615,7 +718,7 @@ section { position:relative; z-index:1; }
   transition:all 0.25s var(--ease);
 }
 .testimonial-card:hover {
-  border-color:rgba(99,102,241,0.3);
+  border-color:rgba(47,143,255,0.3);
   transform:translateY(-2px);
 }
 .t-stars { color:#fbbf24; font-size:14px; margin-bottom:16px; letter-spacing:2px; }
@@ -628,12 +731,12 @@ section { position:relative; z-index:1; }
   font-size:18px; font-weight:700;
   flex-shrink:0;
 }
-.ta-1 { background:linear-gradient(135deg,#3b82f6,#6366f1); }
-.ta-2 { background:linear-gradient(135deg,#8b5cf6,#ec4899); }
+.ta-1 { background:linear-gradient(135deg,#3b82f6,#2f8fff); }
+.ta-2 { background:linear-gradient(135deg,#38bdf8,#2f8fff); }
 .ta-3 { background:linear-gradient(135deg,#06b6d4,#3b82f6); }
 .ta-4 { background:linear-gradient(135deg,#f97316,#eab308); }
 .ta-5 { background:linear-gradient(135deg,#22c55e,#06b6d4); }
-.ta-6 { background:linear-gradient(135deg,#a855f7,#6366f1); }
+.ta-6 { background:linear-gradient(135deg,#38bdf8,#2f8fff); }
 .t-name { font-size:14px; font-weight:700; }
 .t-role { font-size:12px; color:var(--muted); }
 
@@ -677,13 +780,13 @@ section { position:relative; z-index:1; }
   transition:all 0.25s var(--ease);
 }
 .pricing-card.featured {
-  background:linear-gradient(160deg,rgba(99,102,241,0.2),rgba(139,92,246,0.1));
-  border-color:rgba(99,102,241,0.5);
+  background:linear-gradient(160deg,rgba(47,143,255,0.2),rgba(56,189,248,0.1));
+  border-color:rgba(47,143,255,0.5);
   padding-top:44px;
 }
 .pricing-card:hover {
   transform:translateY(-4px);
-  border-color:rgba(99,102,241,0.4);
+  border-color:rgba(47,143,255,0.4);
 }
 .pricing-card.featured:hover { transform:translateY(-6px); }
 .popular-tag {
@@ -749,8 +852,8 @@ section { position:relative; z-index:1; }
 /* ─── CTA SECTION ────────────────────────────────────────────── */
 .cta-section { padding:120px 0; }
 .cta-inner {
-  background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(139,92,246,0.1),rgba(6,182,212,0.08));
-  border:1px solid rgba(99,102,241,0.3);
+  background:linear-gradient(135deg,rgba(47,143,255,0.15),rgba(56,189,248,0.1),rgba(6,182,212,0.08));
+  border:1px solid rgba(47,143,255,0.3);
   border-radius:var(--r-2xl);
   padding:80px 60px;
   text-align:center;
@@ -761,7 +864,7 @@ section { position:relative; z-index:1; }
   position:absolute;
   top:-100px; left:50%; transform:translateX(-50%);
   width:600px; height:400px;
-  background:radial-gradient(ellipse,rgba(99,102,241,0.2),transparent 70%);
+  background:radial-gradient(ellipse,rgba(47,143,255,0.2),transparent 70%);
   pointer-events:none;
 }
 .cta-inner h2 {
@@ -917,6 +1020,9 @@ footer {
   .products-grid { grid-template-columns:1fr; }
   .pricing-grid { grid-template-columns:1fr; }
   .hero-stats { grid-template-columns:1fr; }
+  .hero h1 { font-size:clamp(30px,8vw,42px); }
+  .glass-float-grid { grid-template-columns:1fr; gap:36px; max-width:440px; }
+  .gf-card:nth-child(even) { margin-top:0; }
   .footer-grid { grid-template-columns:1fr; }
   .db-stats-row { grid-template-columns:repeat(2,1fr); }
   .db-row2 { grid-template-columns:1fr; }
@@ -933,6 +1039,31 @@ footer {
 
 <!-- ─── PARTICLE CANVAS ─────────────────────────────────────── -->
 <canvas id="canvas-bg"></canvas>
+<svg id="galaxy-logo" viewBox="0 0 600 600" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="glRing" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f8fff"/>
+      <stop offset="0.5" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#glRing)" stroke-linecap="round">
+    <circle cx="300" cy="300" r="110" stroke-width="1.5" opacity="0.55"/>
+    <circle cx="300" cy="300" r="165" stroke-width="1" stroke-dasharray="2 16" opacity="0.7"/>
+    <circle cx="300" cy="300" r="225" stroke-width="1.5" stroke-dasharray="46 28" opacity="0.45"/>
+    <circle cx="300" cy="300" r="285" stroke-width="1" stroke-dasharray="2 20" opacity="0.6"/>
+  </g>
+  <g fill="url(#glRing)">
+    <circle cx="300" cy="75" r="6"/>
+    <circle cx="525" cy="300" r="5"/>
+    <circle cx="300" cy="525" r="4"/>
+    <circle cx="75" cy="300" r="5"/>
+    <circle cx="459" cy="141" r="4"/>
+    <circle cx="141" cy="459" r="3.5"/>
+    <circle cx="410" cy="410" r="4.5"/>
+    <circle cx="190" cy="190" r="3.5"/>
+  </g>
+</svg>
 
 <!-- ─── NAV ─────────────────────────────────────────────────── -->
 <nav id="navbar">
@@ -942,15 +1073,20 @@ footer {
         <div class="nav-logo-mark" aria-hidden="true"><img src="android-chrome-512x512.png" alt="GeetAI logo"></div>
       </a>
       <ul class="nav-links" role="navigation" aria-label="Main navigation">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#tools">Tools</a></li>
-        <li><a href="#automation">Automation</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#home" data-i18n="nav_home">Home</a></li>
+        <li><a href="#features" data-i18n="nav_features">Features</a></li>
+        <li><a href="#tools" data-i18n="nav_tools">Tools</a></li>
+        <li><a href="#automation" data-i18n="nav_automation">Automation</a></li>
+        <li><a href="#products" data-i18n="nav_products">Products</a></li>
+        <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="btn btn-ghost btn-sm">Sign In</button>
-        <button class="btn btn-primary btn-sm">Start Free
+        <div class="lang-toggle" role="group" aria-label="Language">
+          <button id="langEn" class="lang-btn active" onclick="setLang('en')" title="English">E</button>
+          <button id="langHi" class="lang-btn" onclick="setLang('hi')" title="हिंदी">हि</button>
+        </div>
+        <button class="btn btn-ghost btn-sm" data-i18n="signin" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Sign In</button>
+        <button class="btn btn-primary btn-sm" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Start Free
           <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
         <button class="nav-menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
@@ -961,19 +1097,20 @@ footer {
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
-  <a href="#features">Features</a>
-  <a href="#tools">Tools</a>
-  <a href="#automation">Automation</a>
-  <a href="#products">Products</a>
-  <a href="#pricing">Pricing</a>
+  <a href="#home" data-i18n="nav_home">Home</a>
+  <a href="#features" data-i18n="nav_features">Features</a>
+  <a href="#tools" data-i18n="nav_tools">Tools</a>
+  <a href="#automation" data-i18n="nav_automation">Automation</a>
+  <a href="#products" data-i18n="nav_products">Products</a>
+  <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
   <div style="display:flex;gap:10px;margin-top:8px;">
-    <button class="btn btn-ghost" style="flex:1">Sign In</button>
-    <button class="btn btn-primary" style="flex:1">Start Free</button>
+    <button class="btn btn-ghost" style="flex:1" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Sign In</button>
+    <button class="btn btn-primary" style="flex:1" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Start Free</button>
   </div>
 </div>
 
 <!-- ─── HERO ──────────────────────────────────────────────────── -->
-<section class="hero" aria-label="Hero">
+<section class="hero" id="home" aria-label="Hero">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="container">
     <div class="hero-content">
@@ -985,7 +1122,7 @@ footer {
       </div>
       <h1>
         Your AI OS<br>
-        For <span id="typewriter">Business Growth</span>
+        For <span class="word-swap-wrap" id="wordSwapWrap"><span class="word-swap-item active">Business Growth</span></span>
       </h1>
       <p class="hero-sub">
         GeetAI gives you 30 AI-powered business tools. Generate leads, write proposals, automate workflows, and create content — 10× faster.
@@ -1063,6 +1200,17 @@ footer {
   </div>
 </div>
 
+<!-- ─── MISSION BAND ─────────────────────────────────────────── -->
+<section class="mission-band" aria-label="Why GeetAI">
+  <div class="container">
+    <div class="mission-inner reveal">
+      <span class="section-badge" style="margin:0 auto 18px;display:inline-flex" data-i18n="mission_badge">Built for growth</span>
+      <h2 class="mission-h" data-i18n="mission_h">Businesses that adopt AI grow up to <span class="gradient-text">70% faster.</span><br>GeetAI puts that speed in your hands.</h2>
+      <p class="mission-p" data-i18n="mission_p">You don't need 10 tools, a big team, or a tech background — just one platform that does the heavy work, so you can focus on growing. Start where you are. We'll handle the rest.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ─── FEATURES ─────────────────────────────────────────────── -->
 <section class="features-section" id="features" aria-label="Platform features">
   <div class="container">
@@ -1070,39 +1218,33 @@ footer {
       <div class="section-badge">
         <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Why GeetAI</span>
       </div>
-      <h2>One platform.<br><span class="gradient-text">Everything you need.</span></h2>
+      <h2 data-i18n="feat_h2">One platform.<br><span class="gradient-text">Everything you need.</span></h2>
       <p>Stop juggling 10 different tools. GeetAI consolidates every AI capability your business needs into a single, powerful operating system.</p>
     </div>
     <div class="features-grid" role="list">
-      <article class="feature-card reveal" role="listitem">
-        <div class="feature-icon fi-blue" aria-hidden="true">🎯</div>
-        <h3>Lead Generation Engine</h3>
-        <p>Identify, qualify and reach your ideal customers automatically. GeetAI Leads finds prospects and builds outreach sequences for you.</p>
+      <article class="feature-card reveal" role="listitem" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">
+        <img class="fc-img" src="assets/features/f_leads.webp" alt="Lead Generation Engine">
+        <span class="fc-arrow">→</span>
       </article>
-      <article class="feature-card reveal reveal-delay-1" role="listitem">
-        <div class="feature-icon fi-purple" aria-hidden="true">🤖</div>
-        <h3>30 AI-Powered Tools</h3>
-        <p>From proposals to contracts, content to SEO — every business document and workflow has a dedicated AI tool built for speed and quality.</p>
+      <article class="feature-card reveal reveal-delay-1" role="listitem" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">
+        <img class="fc-img" src="assets/features/f_tools.webp" alt="30 AI-Powered Tools">
+        <span class="fc-arrow">→</span>
       </article>
-      <article class="feature-card reveal reveal-delay-2" role="listitem">
-        <div class="feature-icon fi-cyan" aria-hidden="true">⚡</div>
-        <h3>Workflow Automation</h3>
-        <p>Build multi-step automation workflows that run 24/7. Connect your tools, set triggers, and watch your business operate on autopilot.</p>
+      <article class="feature-card reveal reveal-delay-2" role="listitem" onclick="document.getElementById('automation').scrollIntoView({behavior:'smooth'})">
+        <img class="fc-img" src="assets/features/f_workflow.webp" alt="Workflow Automation">
+        <span class="fc-arrow">→</span>
       </article>
-      <article class="feature-card reveal" role="listitem">
-        <div class="feature-icon fi-pink" aria-hidden="true">📦</div>
-        <h3>Digital Product Store</h3>
-        <p>Buy ready-made prompt packs, automation systems, and business templates. Download and deploy in minutes — not months.</p>
+      <article class="feature-card reveal" role="listitem" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        <img class="fc-img" src="assets/features/f_store.webp" alt="Digital Product Store">
+        <span class="fc-arrow">→</span>
       </article>
-      <article class="feature-card reveal reveal-delay-1" role="listitem">
-        <div class="feature-icon fi-green" aria-hidden="true">📈</div>
-        <h3>Revenue Analytics</h3>
-        <p>Track MRR, conversion rates, tool usage and customer lifetime value from a single dashboard. Know what's growing your business.</p>
+      <article class="feature-card reveal reveal-delay-1" role="listitem" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+        <img class="fc-img" src="assets/features/f_analytics.webp" alt="Revenue Analytics">
+        <span class="fc-arrow">→</span>
       </article>
-      <article class="feature-card reveal reveal-delay-2" role="listitem">
-        <div class="feature-icon fi-orange" aria-hidden="true">🔒</div>
-        <h3>Enterprise Security</h3>
-        <p>Role-based access, encrypted storage, rate limiting and audit logs. Your data and your clients' data stay secure — always.</p>
+      <article class="feature-card reveal reveal-delay-2" role="listitem" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+        <img class="fc-img" src="assets/features/f_security.webp" alt="Enterprise Security">
+        <span class="fc-arrow">→</span>
       </article>
     </div>
   </div>
@@ -1126,9 +1268,9 @@ footer {
           <div class="db-dot db-dot-g"></div>
         </div>
         <div class="db-tabs" role="tablist">
-          <div class="db-tab active" role="tab" aria-selected="true">Overview</div>
-          <div class="db-tab" role="tab" aria-selected="false">Projects</div>
-          <div class="db-tab" role="tab" aria-selected="false">Analytics</div>
+          <div class="db-tab active" role="tab" aria-selected="true" onclick="dbSwitchTab('overview',this)">Overview</div>
+          <div class="db-tab" role="tab" aria-selected="false" onclick="dbSwitchTab('projects',this)">Projects</div>
+          <div class="db-tab" role="tab" aria-selected="false" onclick="dbSwitchTab('analytics',this)">Analytics</div>
         </div>
       </div>
       <div class="db-inner">
@@ -1145,7 +1287,9 @@ footer {
           <div class="db-nav-item"><span class="db-nav-icon" aria-hidden="true">⚙️</span> Settings</div>
         </nav>
         <main class="db-main">
-          <div class="db-greeting">Good morning, Aniket 👋</div>
+          <!-- OVERVIEW PANEL -->
+          <div id="db-panel-overview" class="db-panel">
+          <div class="db-greeting">Good morning, GeetAI 👋</div>
           <div class="db-sub">Here's your business growth summary for today</div>
           <div class="db-stats-row" role="region" aria-label="Key metrics">
             <div class="db-stat-card">
@@ -1210,8 +1354,71 @@ footer {
               </div>
             </div>
           </div>
+          </div>
+
+          <!-- PROJECTS PANEL -->
+          <div id="db-panel-projects" class="db-panel" style="display:none">
+          <div class="db-greeting">Your Projects 📁</div>
+          <div class="db-sub">Track all active AI-powered projects in one place</div>
+          <div class="db-row2" style="grid-template-columns:1fr;">
+            <div class="db-recent">
+              <div class="db-section-title">Active Projects</div>
+              <div class="db-item"><span class="db-item-icon">🚀</span><span class="db-item-name">Mumbai Lead Campaign</span><span class="db-item-time">In Progress</span><span class="db-item-status s-prog">Active</span></div>
+              <div class="db-item"><span class="db-item-icon">📦</span><span class="db-item-name">Agency Proposal Pack — Q3</span><span class="db-item-time">Due: 20 Jun</span><span class="db-item-status s-done">Done</span></div>
+              <div class="db-item"><span class="db-item-icon">✍️</span><span class="db-item-name">Content Calendar — July</span><span class="db-item-time">Drafting</span><span class="db-item-status s-prog">Active</span></div>
+              <div class="db-item"><span class="db-item-icon">📧</span><span class="db-item-name">Cold Email — SaaS Founders</span><span class="db-item-time">50 sent</span><span class="db-item-status s-done">Done</span></div>
+              <div class="db-item"><span class="db-item-icon">🎬</span><span class="db-item-name">Reels Script Batch — June</span><span class="db-item-time">Pending review</span><span class="db-item-status" style="background:rgba(245,158,11,0.15);color:#f59e0b;border-radius:4px;padding:2px 7px;font-size:10px;">Review</span></div>
+            </div>
+          </div>
+          <div class="db-stats-row" style="margin-top:14px;">
+            <div class="db-stat-card"><div class="db-stat-title">Total Projects</div><div class="db-stat-val gradient-text">12</div><div class="db-stat-change">+3 this month</div></div>
+            <div class="db-stat-card"><div class="db-stat-title">Completed</div><div class="db-stat-val gradient-text">8</div><div class="db-stat-change">67% success rate</div></div>
+            <div class="db-stat-card"><div class="db-stat-title">In Progress</div><div class="db-stat-val gradient-text">3</div><div class="db-stat-change">On track</div></div>
+            <div class="db-stat-card"><div class="db-stat-title">Output Files</div><div class="db-stat-val gradient-text">94</div><div class="db-stat-change">Ready to use</div></div>
+          </div>
+          </div>
+
+          <!-- ANALYTICS PANEL -->
+          <div id="db-panel-analytics" class="db-panel" style="display:none">
+          <div class="db-greeting">Growth Analytics 📊</div>
+          <div class="db-sub">Performance overview across all GeetAI tools</div>
+          <div class="db-stats-row">
+            <div class="db-stat-card"><div class="db-stat-title">Total Revenue</div><div class="db-stat-val gradient-text">₹1.2L</div><div class="db-stat-change">↑ 41% vs last month</div></div>
+            <div class="db-stat-card"><div class="db-stat-title">Tool Usage</div><div class="db-stat-val gradient-text">1,840</div><div class="db-stat-change">↑ 58% this month</div></div>
+            <div class="db-stat-card"><div class="db-stat-title">Avg. Time Saved</div><div class="db-stat-val gradient-text">6.4h</div><div class="db-stat-change">Per project</div></div>
+            <div class="db-stat-card"><div class="db-stat-title">Client Score</div><div class="db-stat-val gradient-text">4.9★</div><div class="db-stat-change">Based on 38 reviews</div></div>
+          </div>
+          <div class="db-row2" style="margin-top:14px;">
+            <div class="db-recent">
+              <div class="db-section-title">Top Performing Tools</div>
+              <div class="db-item"><span class="db-item-icon">🎯</span><span class="db-item-name">GeetAI Leads</span><span class="db-item-time">342 runs</span><span class="db-item-status s-done">↑ 68%</span></div>
+              <div class="db-item"><span class="db-item-icon">📝</span><span class="db-item-name">GeetAI Proposals</span><span class="db-item-time">210 runs</span><span class="db-item-status s-done">↑ 45%</span></div>
+              <div class="db-item"><span class="db-item-icon">✍️</span><span class="db-item-name">GeetAI Content</span><span class="db-item-time">580 runs</span><span class="db-item-status s-done">↑ 92%</span></div>
+            </div>
+            <div class="db-tools-list">
+              <div class="db-section-title">Revenue by Category</div>
+              <div class="db-item"><span class="db-item-icon">💼</span><span class="db-item-name">Sales Tools</span><span class="db-item-time">₹48,000</span></div>
+              <div class="db-item"><span class="db-item-icon">✍️</span><span class="db-item-name">Content Tools</span><span class="db-item-time">₹36,000</span></div>
+              <div class="db-item"><span class="db-item-icon">⚙️</span><span class="db-item-name">Operations</span><span class="db-item-time">₹24,000</span></div>
+            </div>
+          </div>
+          </div>
         </main>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FLOATING GLASS CARDS ──────────────────────────────────── -->
+<section class="glass-float-section" aria-label="GeetAI glass features">
+  <div class="container">
+    <div class="glass-float-grid" id="glassGrid">
+      <div class="gf-card" data-speed="0.12"><img src="assets/glass/g_leads.webp" alt="Lead Generation Engine"></div>
+      <div class="gf-card" data-speed="0.22"><img src="assets/glass/g_tools.webp" alt="30 AI-Powered Tools"></div>
+      <div class="gf-card" data-speed="0.10"><img src="assets/glass/g_workflow.webp" alt="Workflow Automation"></div>
+      <div class="gf-card" data-speed="0.20"><img src="assets/glass/g_store.webp" alt="Digital Product Store"></div>
+      <div class="gf-card" data-speed="0.14"><img src="assets/glass/g_analytics.webp" alt="Revenue Analytics"></div>
+      <div class="gf-card" data-speed="0.18"><img src="assets/glass/g_security.webp" alt="Enterprise Security"></div>
     </div>
   </div>
 </section>
@@ -1223,7 +1430,7 @@ footer {
       <div class="section-badge">
         <span class="badge"><span class="badge-dot" aria-hidden="true"></span>30 AI Tools</span>
       </div>
-      <h2>Every tool your business<br><span class="gradient-text">will ever need</span></h2>
+      <h2 data-i18n="tools_h2">Every tool your business<br><span class="gradient-text">will ever need</span></h2>
       <p>One subscription. 30 specialist AI tools. Each built for a specific business outcome — not just "AI writing."</p>
     </div>
     <div class="tools-filter" role="group" aria-label="Filter tools by category">
@@ -1248,11 +1455,11 @@ footer {
         <svg class="flow-lines" viewBox="0 0 400 420">
           <defs>
             <marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L6,3 z" fill="rgba(99,102,241,0.5)"/>
+              <path d="M0,0 L0,6 L6,3 z" fill="rgba(47,143,255,0.5)"/>
             </marker>
           </defs>
-          <line x1="200" y1="80" x2="200" y2="130" stroke="rgba(99,102,241,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
-          <line x1="200" y1="180" x2="100" y2="220" stroke="rgba(139,92,246,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+          <line x1="200" y1="80" x2="200" y2="130" stroke="rgba(47,143,255,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
+          <line x1="200" y1="180" x2="100" y2="220" stroke="rgba(56,189,248,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
           <line x1="200" y1="180" x2="300" y2="220" stroke="rgba(6,182,212,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
           <line x1="100" y1="270" x2="200" y2="320" stroke="rgba(34,197,94,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
           <line x1="300" y1="270" x2="200" y2="320" stroke="rgba(34,197,94,0.4)" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow)"/>
@@ -1277,7 +1484,7 @@ footer {
         <div class="section-badge" style="margin-bottom:20px">
           <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Automation</span>
         </div>
-        <h2>Automate your entire<br><span class="gradient-text">sales pipeline</span></h2>
+        <h2 data-i18n="auto_h2">Automate your entire<br><span class="gradient-text">sales pipeline</span></h2>
         <p>Build workflows that run 24/7. From lead capture to deal closure — GeetAI Automation handles every step so your team can focus on strategy.</p>
         <div class="auto-points">
           <div class="auto-point">
@@ -1302,7 +1509,7 @@ footer {
             </div>
           </div>
         </div>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">
           Explore Automation
           <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
@@ -1318,12 +1525,12 @@ footer {
       <div class="section-badge">
         <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Digital Store</span>
       </div>
-      <h2>Ready-to-deploy<br><span class="gradient-text">AI business systems</span></h2>
+      <h2 data-i18n="prod_h2">Ready-to-deploy<br><span class="gradient-text">AI business systems</span></h2>
       <p>Download and deploy complete business systems built with AI. Proven frameworks. Zero build time.</p>
     </div>
     <div class="products-grid" role="list">
       <article class="product-card reveal" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-1" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-1" aria-hidden="true"><img class="pc-bg" src="assets/products/p1.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Ultimate Prompt Pack</h3>
           <p>500+ battle-tested prompts for sales, marketing, content and operations.</p>
@@ -1335,7 +1542,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal reveal-delay-1" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-2" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-2" aria-hidden="true"><img class="pc-bg" src="assets/products/p2.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Automation Pack Pro</h3>
           <p>Complete n8n + Make automation workflows for lead gen and sales pipelines.</p>
@@ -1347,7 +1554,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal reveal-delay-2" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-3" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-3" aria-hidden="true"><img class="pc-bg" src="assets/products/p3.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Agency OS System</h3>
           <p>Complete agency operating system — proposals, onboarding, delivery, billing.</p>
@@ -1359,7 +1566,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal reveal-delay-3" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-4" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-4" aria-hidden="true"><img class="pc-bg" src="assets/products/p4.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Sales Template Pack</h3>
           <p>Cold emails, follow-up sequences, proposal templates and objection handlers.</p>
@@ -1371,7 +1578,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-5" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-5" aria-hidden="true"><img class="pc-bg" src="assets/products/p5.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Claude Code Templates</h3>
           <p>Ready-to-use Claude Code project templates and agent workflows for developers.</p>
@@ -1383,7 +1590,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal reveal-delay-1" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-6" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-6" aria-hidden="true"><img class="pc-bg" src="assets/products/p6.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Lead Gen System</h3>
           <p>End-to-end lead generation system with scripts, sequences and qualification frameworks.</p>
@@ -1395,7 +1602,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal reveal-delay-2" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-7" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-7" aria-hidden="true"><img class="pc-bg" src="assets/products/p7.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>Content Machine Pack</h3>
           <p>90-day content calendar, caption templates and viral hook formulas for all platforms.</p>
@@ -1407,7 +1614,7 @@ footer {
         </div>
       </article>
       <article class="product-card reveal reveal-delay-3" role="listitem" onclick="window.open('https://aniketgai.gumroad.com','_blank')" style="cursor:pointer">
-        <div class="product-cover pc-8" aria-hidden="true"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
+        <div class="product-cover pc-8" aria-hidden="true"><img class="pc-bg" src="assets/products/p8.webp" alt="" onerror="this.remove()"><img src="android-chrome-512x512.png" class="pc-logo" alt=""></div>
         <div class="product-info">
           <h3>SaaS Starter Kit</h3>
           <p>Complete SaaS business templates — pricing pages, onboarding flows and email sequences.</p>
@@ -1420,7 +1627,7 @@ footer {
       </article>
     </div>
     <div style="text-align:center;margin-top:40px">
-      <button class="btn btn-ghost btn-lg">View All Products
+      <button class="btn btn-ghost btn-lg" data-i18n="viewall" onclick="openAllProducts()">View All Products
         <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
       </button>
     </div>
@@ -1434,7 +1641,7 @@ footer {
       <div class="section-badge">
         <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Testimonials</span>
       </div>
-      <h2>Businesses growing<br><span class="gradient-text">with GeetAI</span></h2>
+      <h2 data-i18n="test_h2">Businesses growing<br><span class="gradient-text">with GeetAI</span></h2>
     </div>
     <div class="testimonials-grid" role="list">
       <article class="testimonial-card reveal" role="listitem">
@@ -1514,7 +1721,7 @@ footer {
       <div class="section-badge">
         <span class="badge"><span class="badge-dot" aria-hidden="true"></span>Pricing</span>
       </div>
-      <h2>Invest in growth.<br><span class="gradient-text">Not in 10 tools.</span></h2>
+      <h2 data-i18n="price_h2">Invest in growth. <span class="gradient-text">Not in 10 tools.</span></h2>
       <p>One subscription replaces Jasper, Instantly, HubSpot, Calendly and 6 other tools. Save ₹40,000+/month.</p>
     </div>
     <div class="pricing-toggle" role="group" aria-label="Billing period">
@@ -1532,7 +1739,7 @@ footer {
         <div class="plan-price" data-monthly="$0" data-annual="$0">$0</div>
         <div class="plan-inr">₹0 / month</div>
         <div class="plan-desc">Try GeetAI — no card needed</div>
-        <button class="btn btn-ghost plan-cta">Get Started Free</button>
+        <button class="btn btn-ghost plan-cta" onclick="window.open('https://t.me/aniketai_studio_bot','_blank')">Get Started Free</button>
         <ul class="plan-features" aria-label="Free plan features">
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 3 AI tools access</li>
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 3 outputs/month</li>
@@ -1547,7 +1754,7 @@ footer {
         <div class="plan-price" data-monthly="$12" data-annual="$7">$12 <span>/mo</span></div>
         <div class="plan-inr" data-monthly-inr="₹999/mo" data-annual-inr="₹599/mo">₹999/mo</div>
         <div class="plan-desc">For solopreneurs & freelancers</div>
-        <button class="btn btn-ghost plan-cta">Start Starter</button>
+        <button class="btn btn-ghost plan-cta" onclick="window.open('https://t.me/aniketai_studio_bot','_blank')">Start Starter</button>
         <ul class="plan-features" aria-label="Starter plan features">
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 10 AI tools</li>
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 200 outputs/month</li>
@@ -1563,7 +1770,7 @@ footer {
         <div class="plan-price" data-monthly="$29" data-annual="$17">$29 <span>/mo</span></div>
         <div class="plan-inr" data-monthly-inr="₹2,499/mo" data-annual-inr="₹1,499/mo">₹2,499/mo</div>
         <div class="plan-desc">For serious business owners</div>
-        <button class="btn btn-primary plan-cta">Start Professional</button>
+        <button class="btn btn-primary plan-cta" onclick="window.open('https://t.me/aniketai_studio_bot','_blank')">Start Professional</button>
         <ul class="plan-features" aria-label="Professional plan features">
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> All 30 AI tools</li>
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> 2,000 outputs/month</li>
@@ -1578,7 +1785,7 @@ footer {
         <div class="plan-price" data-monthly="$72" data-annual="$43">$72 <span>/mo</span></div>
         <div class="plan-inr" data-monthly-inr="₹5,999/mo" data-annual-inr="₹3,599/mo">₹5,999/mo</div>
         <div class="plan-desc">For agencies & teams</div>
-        <button class="btn btn-ghost plan-cta">Start Agency</button>
+        <button class="btn btn-ghost plan-cta" onclick="window.open('https://t.me/aniketai_studio_bot','_blank')">Start Agency</button>
         <ul class="plan-features" aria-label="Agency plan features">
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> All 30 AI tools</li>
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Unlimited outputs</li>
@@ -1593,7 +1800,7 @@ footer {
         <div class="plan-price">Custom</div>
         <div class="plan-inr">Contact for pricing</div>
         <div class="plan-desc">For large organizations</div>
-        <button class="btn btn-cyan plan-cta">Contact Sales</button>
+        <button class="btn btn-cyan plan-cta" onclick="window.location.href='mailto:aniketgai.studio@gmail.com'">Contact Sales</button>
         <ul class="plan-features" aria-label="Enterprise plan features">
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Everything in Agency</li>
           <li class="plan-feature"><span class="plan-feature-icon" aria-hidden="true">✓</span> Unlimited seats</li>
@@ -1613,7 +1820,7 @@ footer {
       <div class="section-badge">
         <span class="badge"><span class="badge-dot" aria-hidden="true"></span>FAQ</span>
       </div>
-      <h2>Questions? <span class="gradient-text">Answered.</span></h2>
+      <h2 data-i18n="faq_h2">Questions? <span class="gradient-text">Answered.</span></h2>
     </div>
     <div class="faq-grid" id="faqGrid">
       <!-- FAQ injected by JS -->
@@ -1625,18 +1832,40 @@ footer {
 <section class="cta-section" aria-label="Call to action">
   <div class="container">
     <div class="cta-inner reveal">
-      <h2>Your competitors are already<br><span class="gradient-text">using AI. Are you?</span></h2>
+      <h2 data-i18n="cta_h2">Your competitors are already<br><span class="gradient-text">using AI. Are you?</span></h2>
       <p>Start free today. No credit card. No setup. Results from day one.</p>
       <div class="cta-actions">
-        <button class="btn btn-primary btn-lg">
+        <button class="btn btn-primary btn-lg" onclick="window.open('https://t.me/aniketai_studio_bot','_blank')">
           Start Free — No Credit Card
           <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </button>
-        <button class="btn btn-ghost btn-lg">Book a Demo</button>
+        <button class="btn btn-ghost btn-lg" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Book a Demo</button>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ─── ALL PRODUCTS MODAL ─────────────────────────────────────── -->
+<div class="pm-overlay" id="allProductsModal" role="dialog" aria-modal="true" aria-label="All products" onclick="if(event.target===this)closeAllProducts()">
+  <div class="pm-box">
+    <div class="pm-head">
+      <h3>All GeetAI Vaults <span class="pm-count" id="pmCount"></span></h3>
+      <button class="pm-close" aria-label="Close" onclick="closeAllProducts()">✕</button>
+    </div>
+    <div class="pm-search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="pmSearch" type="search" placeholder="Search vaults… (e.g. automation, SEO, finance)" oninput="pmSearch(this.value)" autocomplete="off">
+    </div>
+    <div class="pm-tabs" id="pmTabs"></div>
+    <div class="pm-list" id="pmList"></div>
+    <div class="pm-foot">
+      <span>Bundles — save up to 77%:</span>
+      <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener" class="pm-bundle">Starter ₹2,999</a>
+      <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener" class="pm-bundle">Growth ₹6,999</a>
+      <a href="https://aniketgai.gumroad.com" target="_blank" rel="noopener" class="pm-bundle hot">Complete ₹12,999</a>
+    </div>
+  </div>
+</div>
 
 <!-- ─── FOOTER ─────────────────────────────────────────────────── -->
 <footer aria-label="Site footer">
@@ -1701,6 +1930,38 @@ footer {
 
 <!-- ─── JS ────────────────────────────────────────────────────── -->
 <script>
+/* ─── LANGUAGE (EN / HI) ─── */
+let LANG = localStorage.getItem('geetai_lang') || 'en';
+const I18N = {
+  nav_home:['Home','होम'],
+  mission_badge:['Built for growth','ग्रोथ के लिए बना'],
+  mission_h:['Businesses that adopt AI grow up to <span class="gradient-text">70% faster.</span><br>GeetAI puts that speed in your hands.','AI अपनाने वाले बिज़नेस <span class="gradient-text">70% तक तेज़</span> बढ़ते हैं।<br>वही रफ़्तार अब आपके हाथ में — GeetAI के साथ।'],
+  mission_p:["You don't need 10 tools, a big team, or a tech background — just one platform that does the heavy work, so you can focus on growing. Start where you are. We'll handle the rest.",'न 10 टूल्स चाहिए, न बड़ी टीम, न टेक्निकल ज्ञान — बस एक प्लेटफॉर्म जो भारी काम संभाले, ताकि आप ग्रोथ पर ध्यान दें। जहाँ हैं वहीं से शुरू करें, बाकी हम देख लेंगे।'],
+  nav_features:['Features','फीचर्स'], nav_tools:['Tools','टूल्स'], nav_automation:['Automation','ऑटोमेशन'],
+  nav_products:['Products','प्रोडक्ट्स'], nav_pricing:['Pricing','कीमत'],
+  signin:['Sign In','साइन इन'], startfree:['Start Free','फ्री में शुरू करें'],
+  hero_h1:['Everything your business needs.<br>One AI platform.','आपके बिज़नेस को जो चाहिए, सब कुछ।<br>एक ही AI प्लेटफॉर्म।'],
+  feat_h2:['One platform.<br><span class="gradient-text">Everything you need.</span>','एक ही प्लेटफॉर्म।<br><span class="gradient-text">आपकी हर ज़रूरत।</span>'],
+  tools_h2:['Every tool your business<br><span class="gradient-text">will ever need</span>','आपके बिज़नेस के लिए<br><span class="gradient-text">हर ज़रूरी टूल</span>'],
+  auto_h2:['Automate your entire<br><span class="gradient-text">sales pipeline</span>','अपनी पूरी सेल्स पाइपलाइन<br><span class="gradient-text">ऑटोमेट करें</span>'],
+  prod_h2:['Ready-to-deploy<br><span class="gradient-text">AI business systems</span>','तुरंत इस्तेमाल लायक<br><span class="gradient-text">AI बिज़नेस सिस्टम</span>'],
+  test_h2:['Businesses growing<br><span class="gradient-text">with GeetAI</span>','GeetAI के साथ<br><span class="gradient-text">बढ़ते बिज़नेस</span>'],
+  price_h2:['Invest in growth. <span class="gradient-text">Not in 10 tools.</span>','ग्रोथ में निवेश करें। <span class="gradient-text">10 टूल्स में नहीं।</span>'],
+  faq_h2:['Questions? <span class="gradient-text">Answered.</span>','सवाल? <span class="gradient-text">यहाँ जवाब।</span>'],
+  cta_h2:['Your competitors are already<br><span class="gradient-text">using AI. Are you?</span>','आपके प्रतिस्पर्धी पहले से<br><span class="gradient-text">AI इस्तेमाल कर रहे हैं। आप?</span>'],
+  viewall:['View All Products','सभी प्रोडक्ट देखें']
+};
+function setLang(l){
+  LANG = l; localStorage.setItem('geetai_lang', l);
+  document.getElementById('langEn').classList.toggle('active', l==='en');
+  document.getElementById('langHi').classList.toggle('active', l==='hi');
+  document.documentElement.lang = (l==='hi'?'hi':'en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n'); if(I18N[k]) el.innerHTML = I18N[k][l==='hi'?1:0];
+  });
+  if (typeof renderTools==='function') renderTools(document.querySelector('.filter-btn.active')?.dataset.filter||'all');
+}
+
 /* ─── PARTICLE CANVAS ─── */
 (function() {
   const canvas = document.getElementById('canvas-bg');
@@ -1712,7 +1973,7 @@ footer {
     H = canvas.height = window.innerHeight;
   }
 
-  const COLORS = ['rgba(59,130,246,', 'rgba(139,92,246,', 'rgba(6,182,212,', 'rgba(99,102,241,'];
+  const COLORS = ['rgba(47,143,255,', 'rgba(56,189,248,', 'rgba(56,217,240,', 'rgba(92,179,255,'];
 
   function rand(a, b) { return a + Math.random() * (b - a); }
 
@@ -1722,7 +1983,7 @@ footer {
       vx: rand(-0.3, 0.3), vy: rand(-0.3, 0.3),
       r: rand(1, 2.5),
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
-      opacity: rand(0.3, 0.8)
+      opacity: rand(0.08, 0.28)
     };
   }
 
@@ -1749,11 +2010,11 @@ footer {
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 160) {
-          const alpha = 0.18 * (1 - dist / 160);
+          const alpha = 0.07 * (1 - dist / 160);
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(99,102,241,${alpha})`;
+          ctx.strokeStyle = `rgba(47,143,255,${alpha})`;
           ctx.lineWidth = 0.7;
           ctx.stroke();
           // occasionally spawn a signal pulse
@@ -1783,7 +2044,7 @@ footer {
     particles.forEach(p => {
       // outer glow halo
       const halo = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 5);
-      halo.addColorStop(0, p.color + '0.12)');
+      halo.addColorStop(0, p.color + '0.04)');
       halo.addColorStop(1, p.color + '0)');
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
@@ -1851,55 +2112,110 @@ mobileNav.querySelectorAll('a').forEach(a => {
   });
 });
 
-/* ─── TYPEWRITER ─── */
-const words = ['Business Growth', 'Lead Generation', 'Sales Automation', 'Content Creation', 'Agency Operations', 'Revenue Growth'];
-let wi = 0, ci = 0, deleting = false;
-const tw = document.getElementById('typewriter');
-function type() {
-  const word = words[wi];
-  if (!deleting) {
-    tw.textContent = word.slice(0, ++ci);
-    if (ci === word.length) { deleting = true; setTimeout(type, 2000); return; }
-  } else {
-    tw.textContent = word.slice(0, --ci);
-    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+/* ─── WORD SWAP (smooth fade+slide) ─── */
+(function(){
+  const WORDS = ['Business Growth','Lead Generation','Sales Automation','Content Creation','Agency Operations','Revenue Growth'];
+  const wrap = document.getElementById('wordSwapWrap');
+  let cur = 0;
+
+  // pre-build all spans
+  WORDS.forEach((w, i) => {
+    if (i === 0) return; // first already in HTML
+    const s = document.createElement('span');
+    s.className = 'word-swap-item';
+    s.textContent = w;
+    wrap.appendChild(s);
+  });
+
+  const items = wrap.querySelectorAll('.word-swap-item');
+
+  function next() {
+    const prev = cur;
+    cur = (cur + 1) % WORDS.length;
+    items[prev].classList.add('exit');
+    items[prev].classList.remove('active');
+    items[cur].classList.add('active');
+    setTimeout(() => {
+      items[prev].classList.remove('exit');
+      items[prev].style.transform = 'translateY(28px)';
+      items[prev].style.opacity = '0';
+      // reset inline so CSS transition picks up next time
+      requestAnimationFrame(() => {
+        items[prev].style.transform = '';
+        items[prev].style.opacity = '';
+      });
+    }, 560);
   }
-  setTimeout(type, deleting ? 60 : 100);
-}
-type();
+
+  setInterval(next, 2800);
+})();
+
+/* ─── GLASS CARD PARALLAX ─── */
+(function(){
+  const cards = document.querySelectorAll('.gf-card');
+  if(!cards.length) return;
+  function update(){
+    const sy = window.scrollY;
+    cards.forEach(c => {
+      const speed = parseFloat(c.dataset.speed||0.15);
+      const rect  = c.getBoundingClientRect();
+      const cy    = rect.top + sy + rect.height/2;
+      const dy    = (sy + window.innerHeight/2) - cy;
+      c.style.transform = `translateY(${dy * speed * -1}px)`;
+    });
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
+/* ─── GALAXY LOGO SCROLL ROTATION ─── */
+(function(){
+  const logo = document.getElementById('galaxy-logo');
+  if (!logo) return;
+  let angle = 0, lastY = 0, raf;
+
+  function onScroll() {
+    const dy = window.scrollY - lastY;
+    lastY = window.scrollY;
+    angle += dy * 0.04; // speed — tune here
+    logo.style.transform = `translate(-50%,-50%) rotate(${angle}deg)`;
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
 
 /* ─── TOOLS DATA — FINAL CURATED 30 ─── */
 const tools = [
-  { slug:'leads', emoji:'🎯', name:'GeetAI Leads', desc:'Lead generation platform', cat:'sales', badge:'Sales' },
-  { slug:'proposals', emoji:'📄', name:'GeetAI Proposals', desc:'Proposal generator', cat:'sales', badge:'Sales' },
-  { slug:'contracts', emoji:'📋', name:'GeetAI Contracts', desc:'Contract generator', cat:'sales', badge:'Legal' },
-  { slug:'quotations', emoji:'💰', name:'GeetAI Quotations', desc:'Quotation builder', cat:'sales', badge:'Sales' },
-  { slug:'content', emoji:'✍️', name:'GeetAI Content', desc:'Content factory', cat:'content', badge:'Content' },
-  { slug:'seo', emoji:'🔍', name:'GeetAI SEO', desc:'SEO generator', cat:'content', badge:'SEO' },
-  { slug:'blog', emoji:'📝', name:'GeetAI Blog', desc:'Blog generator', cat:'content', badge:'Content' },
-  { slug:'social', emoji:'📱', name:'GeetAI Social', desc:'Social media generator', cat:'content', badge:'Social' },
-  { slug:'emails', emoji:'📧', name:'GeetAI Emails', desc:'Email writer', cat:'content', badge:'Email' },
-  { slug:'outreach', emoji:'🚀', name:'GeetAI Outreach', desc:'Cold outreach system', cat:'sales', badge:'Outreach' },
-  { slug:'crm', emoji:'🤝', name:'GeetAI CRM', desc:'CRM assistant', cat:'operations', badge:'CRM' },
-  { slug:'support', emoji:'💬', name:'GeetAI Support', desc:'Customer support AI', cat:'operations', badge:'Support' },
-  { slug:'whatsapp', emoji:'📲', name:'GeetAI WhatsApp', desc:'WhatsApp assistant', cat:'operations', badge:'Messaging' },
-  { slug:'recruit', emoji:'👥', name:'GeetAI Recruit', desc:'Recruitment system', cat:'hr', badge:'HR' },
-  { slug:'resume', emoji:'📑', name:'GeetAI Resume', desc:'Resume & career builder', cat:'hr', badge:'HR' },
-  { slug:'course', emoji:'🎓', name:'GeetAI Course', desc:'Course generator', cat:'content', badge:'EdTech' },
-  { slug:'local', emoji:'🏪', name:'GeetAI Local', desc:'Local business AI', cat:'operations', badge:'Local' },
-  { slug:'real-estate', emoji:'🏠', name:'GeetAI Real Estate', desc:'Real estate AI', cat:'operations', badge:'Real Estate' },
-  { slug:'automation', emoji:'⚡', name:'GeetAI Automation', desc:'Workflow builder', cat:'operations', badge:'Automation' },
-  { slug:'marketplace', emoji:'🛍️', name:'GeetAI Marketplace', desc:'Automation marketplace', cat:'operations', badge:'Store' },
-  { slug:'brand', emoji:'✨', name:'GeetAI Brand', desc:'Personal brand system', cat:'agency', badge:'Branding' },
-  { slug:'agencyos', emoji:'🏢', name:'GeetAI AgencyOS', desc:'Agency operating system', cat:'agency', badge:'Agency' },
-  { slug:'reels', emoji:'🎬', name:'GeetAI Reels Script', desc:'Viral short-video scripts', cat:'content', badge:'Video' },
-  { slug:'adcopy', emoji:'📢', name:'GeetAI AdCopy', desc:'High-converting ad copy', cat:'sales', badge:'Ads' },
-  { slug:'reputation', emoji:'⭐', name:'GeetAI Reputation', desc:'Review & reputation manager', cat:'operations', badge:'Reputation' },
-  { slug:'voice', emoji:'🎙️', name:'GeetAI VoiceScript', desc:'Podcast & voiceover scripts', cat:'content', badge:'Audio' },
-  { slug:'freelance-pitch', emoji:'💼', name:'GeetAI Freelance Pitch', desc:'Winning pitch generator', cat:'sales', badge:'Freelance' },
-  { slug:'listing', emoji:'🛒', name:'GeetAI Listing', desc:'E-commerce listing optimizer', cat:'sales', badge:'E-com' },
-  { slug:'persona', emoji:'🔬', name:'GeetAI Persona', desc:'Customer research & personas', cat:'content', badge:'Research' },
-  { slug:'minutes', emoji:'🗒️', name:'GeetAI Minutes', desc:'Meeting summaries & action items', cat:'operations', badge:'Productivity' },
+  { slug:'leads', emoji:'🎯', name:'GeetAI Leads', desc:'Lead generation platform', descHi:'लीड जनरेशन प्लेटफॉर्म', cat:'sales', badge:'Sales' },
+  { slug:'proposals', emoji:'📄', name:'GeetAI Proposals', desc:'Proposal generator', descHi:'प्रपोज़ल जनरेटर', cat:'sales', badge:'Sales' },
+  { slug:'contracts', emoji:'📋', name:'GeetAI Contracts', desc:'Contract generator', descHi:'कॉन्ट्रैक्ट जनरेटर', cat:'sales', badge:'Legal' },
+  { slug:'quotations', emoji:'💰', name:'GeetAI Quotations', desc:'Quotation builder', descHi:'कोटेशन बिल्डर', cat:'sales', badge:'Sales' },
+  { slug:'content', emoji:'✍️', name:'GeetAI Content', desc:'Content factory', descHi:'कंटेंट फैक्ट्री', cat:'content', badge:'Content' },
+  { slug:'seo', emoji:'🔍', name:'GeetAI SEO', desc:'SEO generator', descHi:'SEO जनरेटर', cat:'content', badge:'SEO' },
+  { slug:'blog', emoji:'📝', name:'GeetAI Blog', desc:'Blog generator', descHi:'ब्लॉग जनरेटर', cat:'content', badge:'Content' },
+  { slug:'social', emoji:'📱', name:'GeetAI Social', desc:'Social media generator', descHi:'सोशल मीडिया जनरेटर', cat:'content', badge:'Social' },
+  { slug:'emails', emoji:'📧', name:'GeetAI Emails', desc:'Email writer', descHi:'ईमेल राइटर', cat:'content', badge:'Email' },
+  { slug:'outreach', emoji:'🚀', name:'GeetAI Outreach', desc:'Cold outreach system', descHi:'कोल्ड आउटरीच सिस्टम', cat:'sales', badge:'Outreach' },
+  { slug:'crm', emoji:'🤝', name:'GeetAI CRM', desc:'CRM assistant', descHi:'CRM असिस्टेंट', cat:'operations', badge:'CRM' },
+  { slug:'support', emoji:'💬', name:'GeetAI Support', desc:'Customer support AI', descHi:'कस्टमर सपोर्ट AI', cat:'operations', badge:'Support' },
+  { slug:'whatsapp', emoji:'📲', name:'GeetAI WhatsApp', desc:'WhatsApp assistant', descHi:'व्हाट्सऐप असिस्टेंट', cat:'operations', badge:'Messaging' },
+  { slug:'recruit', emoji:'👥', name:'GeetAI Recruit', desc:'Recruitment system', descHi:'भर्ती सिस्टम', cat:'hr', badge:'HR' },
+  { slug:'resume', emoji:'📑', name:'GeetAI Resume', desc:'Resume & career builder', descHi:'रिज़्यूमे और करियर बिल्डर', cat:'hr', badge:'HR' },
+  { slug:'course', emoji:'🎓', name:'GeetAI Course', desc:'Course generator', descHi:'कोर्स जनरेटर', cat:'content', badge:'EdTech' },
+  { slug:'local', emoji:'🏪', name:'GeetAI Local', desc:'Local business AI', descHi:'लोकल बिज़नेस AI', cat:'operations', badge:'Local' },
+  { slug:'real-estate', emoji:'🏠', name:'GeetAI Real Estate', desc:'Real estate AI', descHi:'रियल एस्टेट AI', cat:'operations', badge:'Real Estate' },
+  { slug:'automation', emoji:'⚡', name:'GeetAI Automation', desc:'Workflow builder', descHi:'वर्कफ़्लो बिल्डर', cat:'operations', badge:'Automation' },
+  { slug:'marketplace', emoji:'🛍️', name:'GeetAI Marketplace', desc:'Automation marketplace', descHi:'ऑटोमेशन मार्केटप्लेस', cat:'operations', badge:'Store' },
+  { slug:'brand', emoji:'✨', name:'GeetAI Brand', desc:'Personal brand system', descHi:'पर्सनल ब्रांड सिस्टम', cat:'agency', badge:'Branding' },
+  { slug:'agencyos', emoji:'🏢', name:'GeetAI AgencyOS', desc:'Agency operating system', descHi:'एजेंसी ऑपरेटिंग सिस्टम', cat:'agency', badge:'Agency' },
+  { slug:'reels', emoji:'🎬', name:'GeetAI Reels Script', desc:'Viral short-video scripts', descHi:'वायरल शॉर्ट-वीडियो स्क्रिप्ट', cat:'content', badge:'Video' },
+  { slug:'adcopy', emoji:'📢', name:'GeetAI AdCopy', desc:'High-converting ad copy', descHi:'हाई-कन्वर्टिंग ऐड कॉपी', cat:'sales', badge:'Ads' },
+  { slug:'reputation', emoji:'⭐', name:'GeetAI Reputation', desc:'Review & reputation manager', descHi:'रिव्यू और रेपुटेशन मैनेजर', cat:'operations', badge:'Reputation' },
+  { slug:'voice', emoji:'🎙️', name:'GeetAI VoiceScript', desc:'Podcast & voiceover scripts', descHi:'पॉडकास्ट और वॉइसओवर स्क्रिप्ट', cat:'content', badge:'Audio' },
+  { slug:'freelance-pitch', emoji:'💼', name:'GeetAI Freelance Pitch', desc:'Winning pitch generator', descHi:'विनिंग पिच जनरेटर', cat:'sales', badge:'Freelance' },
+  { slug:'listing', emoji:'🛒', name:'GeetAI Listing', desc:'E-commerce listing optimizer', descHi:'ई-कॉमर्स लिस्टिंग ऑप्टिमाइज़र', cat:'sales', badge:'E-com' },
+  { slug:'persona', emoji:'🔬', name:'GeetAI Persona', desc:'Customer research & personas', descHi:'कस्टमर रिसर्च और पर्सोना', cat:'content', badge:'Research' },
+  { slug:'minutes', emoji:'🗒️', name:'GeetAI Minutes', desc:'Meeting summaries & action items', descHi:'मीटिंग सारांश और ऐक्शन आइटम', cat:'operations', badge:'Productivity' },
 ];
 
 function renderTools(filter) {
@@ -1907,14 +2223,22 @@ function renderTools(filter) {
   const filtered = filter === 'all' ? tools : tools.filter(t => t.cat === filter);
   grid.innerHTML = filtered.map(t => `
     <a href="tools/${t.slug}.html" class="tool-card reveal" role="listitem" tabindex="0" aria-label="${t.name}: ${t.desc}">
-      <span class="tool-emoji" aria-hidden="true">${t.emoji}</span>
+      <img class="tool-icon-img" src="assets/tools/${t.slug}.png" alt="" loading="lazy" aria-hidden="true" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="tool-emoji" aria-hidden="true" style="display:none">${t.emoji}</span>
       <div class="tool-name">${t.name}</div>
-      <div class="tool-desc">${t.desc}</div>
+      <div class="tool-desc" data-i18n-tool="${t.slug}">${LANG==='hi'&&t.descHi?t.descHi:t.desc}</div>
       <span class="tool-badge">${t.badge}</span>
     </a>
   `).join('');
   // Re-observe new cards
   grid.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+}
+
+function dbSwitchTab(panel, el) {
+  document.querySelectorAll('.db-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.db-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  document.getElementById('db-panel-' + panel).style.display = '';
+  el.classList.add('active'); el.setAttribute('aria-selected','true');
 }
 
 function filterTools(filter, btn) {
@@ -2039,7 +2363,65 @@ const revealObserver = new IntersectionObserver((entries) => {
 })();
 
 /* ─── INIT ─── */
+/* ─── ALL PRODUCTS MODAL ─── */
+const allProducts = [
+  ['01','LeadGen Prompt Vault','1,499','Sales'],['02','Proposal Template Kit','1,999','Sales'],['03','Contracts Vault','1,999','Sales'],
+  ['04','Quotation Templates Vault','1,499','Sales'],['05','Content Idea Vault','1,499','Content'],['06','SEO Toolkit Vault','1,999','Content'],
+  ['07','Blog & Long-Form Content Vault','1,999','Content'],['08','Social Caption Vault','999','Content'],['09','Cold Email Swipe File','1,999','Sales'],
+  ['10','Business Email Vault','1,499','Content'],['11','CRM Playbook Vault','1,999','Operations'],['12','Support Reply Vault','1,499','Operations'],
+  ['14','Recruitment Toolkit','1,999','HR'],['15','Interview Prep Vault','1,499','HR'],['16','Resume & Career Vault','1,499','HR'],
+  ['17','Course Creation Vault','1,999','Content'],['18','Knowledge Base & SOP Vault','1,499','Operations'],['19','Local Business Marketing Vault','1,499','Operations'],
+  ['20','Real Estate Vault','1,999','Operations'],['21','Tender & Bid Response Vault','1,999','Sales'],['22','Automation Blueprint Pack','4,999','Agency'],
+  ['23','Marketplace Profile Vault','1,499','Operations'],['24','Brand Identity Vault','1,999','Agency'],['25','AgencyOS (flagship)','4,999','Agency'],
+  ['26','Reels Script Vault','1,499','Content'],['27','AdCopy Vault','1,999','Sales'],['28','Reputation Vault','1,499','Operations'],
+  ['29','WhatsApp DM Vault','1,499','Sales'],['30','Voice & Podcast Script Vault','1,499','Content'],['31','Freelance Pitch Vault','1,499','Sales'],
+  ['32','E-commerce Listing Vault','1,499','Sales'],['33','Persona/Research Vault','1,999','Content'],['34','Meeting Minutes Vault','1,499','Operations'],
+  ['35','Finance & Invoicing Vault','1,999','Finance'],['36','Tax & GST Reply Vault','1,499','Finance'],['37','Pitch Deck Vault','1,999','Sales'],
+  ['38','Webinar Funnel Vault','1,499','Sales'],['39','YouTube Script Vault','1,499','Content'],['40','Newsletter Vault','1,499','Content'],
+  ['41','Hiring Ads Vault','1,499','HR'],['42','Employee Onboarding Vault','1,499','HR'],['43','Healthcare Clinic Vault','1,999','Operations'],
+  ['44','Restaurant Marketing Vault','1,499','Operations'],['45','Fitness Coach Vault','1,499','Operations'],['46','Travel Agency Vault','1,499','Operations'],
+  ['47','SaaS Launch Vault','1,999','Agency'],['48','Coaching Program Vault','1,999','Agency'],['49','Affiliate Marketing Vault','1,499','Sales'],
+  ['50','Ad Campaign Funnel Vault','1,999','Sales'],['51','Education & EdTech Vault','1,999','Education'],['52','Exam Prep Content Vault','1,499','Education'],
+];
+const GUMROAD = 'https://aniketgai.gumroad.com';
+const PM_CATS = ['All','Sales','Content','Operations','HR','Agency','Finance','Education'];
+let pmFilter = 'All', pmQuery = '';
+function pmRender() {
+  const list = document.getElementById('pmList');
+  let items = pmFilter === 'All' ? allProducts : allProducts.filter(p => p[3] === pmFilter);
+  if (pmQuery) { const q = pmQuery.toLowerCase(); items = items.filter(p => (p[1]+' '+p[3]).toLowerCase().includes(q)); }
+  document.getElementById('pmCount').textContent = '(' + items.length + ')';
+  list.innerHTML = items.length ? items.map(p => `
+    <a class="pm-row" href="${GUMROAD}" target="_blank" rel="noopener">
+      <span class="pm-num">${p[0]}</span>
+      <span class="pm-name">${p[1]}</span>
+      <span class="pm-cat">${p[3]}</span>
+      <span class="pm-price">₹${p[2]}</span>
+    </a>`).join('') : '<div class="pm-empty">No vaults match your search.</div>';
+}
+function openAllProducts() {
+  document.getElementById('pmTabs').innerHTML = PM_CATS.map(c =>
+    `<button class="pm-tab ${c===pmFilter?'active':''}" onclick="pmSetCat('${c}',this)">${c}</button>`).join('');
+  pmRender();
+  document.getElementById('allProductsModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(()=>document.getElementById('pmSearch')?.focus(),50);
+}
+function pmSetCat(c, btn) {
+  pmFilter = c;
+  document.querySelectorAll('.pm-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  pmRender();
+}
+function pmSearch(v) { pmQuery = v; pmRender(); }
+function closeAllProducts() {
+  document.getElementById('allProductsModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllProducts(); });
+
 renderTools('all');
+setLang(LANG);
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 // Re-run tilt attach for dynamically rendered tool cards (renderTools runs after observer setup)
 (function reattachForDynamicCards(){
@@ -2070,5 +2452,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   });
 })();
 </script>
+<!-- Gumroad overlay — checkout stays on this page (no redirect) -->
+<script src="https://gumroad.com/js/gumroad.js"></script>
 </body>
 </html>
